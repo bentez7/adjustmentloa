@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outlet Approvals</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="icon" href="../Images/Eco-Shop logo.png" type="image/png">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .main-container {
+      margin-top: 50px;
+    }
+    .pagination {
+      justify-content: center;
+    }
+    .fa-eye-slash,
+    .fa-eye,
+    .fa-edit {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container main-container">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3">
+        <div class="list-group">
+          <a href="QuantityApproval.html" class="list-group-item list-group-item-action">Approval by Quantity</a>
+          <a href="PriceApproval.html" class="list-group-item list-group-item-action">Approval by Price</a>
+          <a href="OutletRegionalSettings.html" class="list-group-item list-group-item-action">Outlet Regional Settings</a>
+          <a href="OutletPage.html" class="list-group-item list-group-item-action">Outlet Page</a>
+          <a href="OutletApproval.html" class="list-group-item list-group-item-action active">Outlet Approval</a>
+          <a href="AuthorizationPage.html" class="list-group-item list-group-item-action">Authorization Page</a>
+        </div>
+      </div>
+
+      <!-- Content Panel -->
+      <div class="col-md-9">
+        <h1 class="mb-4 text-center">Outlet Approvals</h1>
+        
+        <!-- Tabs for Active, Hidden, All -->
+        <ul class="nav nav-tabs mb-4" id="outletApprovalTabs" role="tablist">
+          <li class="nav-item">
+            <button class="nav-link active" id="active-tab" data-bs-toggle="tab" data-bs-target="#active" type="button" role="tab">Active</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" id="hidden-tab" data-bs-toggle="tab" data-bs-target="#hidden" type="button" role="tab">Hidden</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab">All</button>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <!-- Active Tab -->
+          <div class="tab-pane fade show active" id="active" role="tabpanel">
+            <h6>Active Approvals</h6>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Outlet</th>
+                  <th>Special Price Name</th>
+                  <th>Quantity Approval</th>
+                  <th>Price Approval</th>
+                  <th>Created By</th>
+                  <th>Created At</th>
+                  <th>Modified By</th>
+                  <th>Modified At</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="activeTableBody">
+                <!-- Active rows will appear here -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Hidden Tab -->
+          <div class="tab-pane fade" id="hidden" role="tabpanel">
+            <h6>Hidden Approvals</h6>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Outlet</th>
+                  <th>Special Price Name</th>
+                  <th>Quantity Approval</th>
+                  <th>Price Approval</th>
+                  <th>Created By</th>
+                  <th>Created At</th>
+                  <th>Modified By</th>
+                  <th>Modified At</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="hiddenTableBody">
+                <!-- Hidden rows will appear here -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- All Tab -->
+          <div class="tab-pane fade" id="all" role="tabpanel">
+            <h6>All Approvals</h6>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Outlet</th>
+                  <th>Special Price Name</th>
+                  <th>Quantity Approval</th>
+                  <th>Price Approval</th>
+                  <th>Created By</th>
+                  <th>Created At</th>
+                  <th>Modified By</th>
+                  <th>Modified At</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="allTableBody">
+                <!-- All rows will appear here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Input for Adding New Approvals -->
+        <h6 class="mt-4 mb-3">Add Special Approval</h6>
+        <div class="row mb-3">
+          <div class="col">
+            <label for="outletDropdown" class="form-label">Select Outlet</label>
+            <select class="form-control" id="outletDropdown">
+              <!-- Dropdown options will be populated dynamically -->
+            </select>
+          </div>
+          <div class="col">
+            <label for="specialName" class="form-label">Special Price Name</label>
+            <input type="text" class="form-control" id="specialName" placeholder="Enter Special Name">
+          </div>
+          <div class="col">
+            <label for="quantityApproval" class="form-label">Quantity Approval</label>
+            <select class="form-control" id="quantityApproval">
+              <option value="1">Quantity Approval 1</option>
+              <option value="2">Quantity Approval 2</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="priceApproval" class="form-label">Price Approval</label>
+            <select class="form-control" id="priceApproval">
+              <option value="1">Price Approval 1</option>
+              <option value="2">Price Approval 2</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="addNewApproval()">Add Special Approval</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const outlets = ["Outlet A", "Outlet B", "Outlet C", "Outlet D"]; // Example outlets
+    const activeRows = [];
+    const hiddenRows = [];
+    const allRows = [];
+    const rowsPerPage = 5;
+    let activePage = 1;
+
+    // Populate outlet dropdown
+    function populateOutletDropdown() {
+      const dropdown = document.getElementById("outletDropdown");
+      outlets.forEach(outlet => {
+        const option = document.createElement("option");
+        option.value = outlet;
+        option.textContent = outlet;
+        dropdown.appendChild(option);
+      });
+    }
+
+    // Add a new approval
+    function addNewApproval() {
+      const outletName = document.getElementById("outletDropdown").value;
+      const specialName = document.getElementById("specialName").value;
+      const quantityApproval = document.getElementById("quantityApproval").value;
+      const priceApproval = document.getElementById("priceApproval").value;
+      const createdBy = "Admin";
+      const createdAt = new Date().toLocaleString();
+
+      const newRow = {
+        outletName,
+        specialName,
+        quantityApproval,
+        priceApproval,
+        createdBy,
+        createdAt,
+        modifiedBy: "--",
+        modifiedAt: "--",
+        status: "Active",
+      };
+
+      activeRows.push(newRow);
+      allRows.push(newRow);
+
+      renderTables();
+    }
+
+    // Render tables and populate dropdown
+    function renderTables() {
+      renderTable(activeRows, "activeTableBody", "Hidden");
+      renderTable(hiddenRows, "hiddenTableBody", "Active");
+      renderAllTable();
+    }
+
+    function renderTable(rows, tableBodyId, targetStatus) {
+      const tableBody = document.getElementById(tableBodyId);
+      tableBody.innerHTML = "";
+
+      rows.forEach(row => {
+        tableBody.innerHTML += `
+          <tr>
+            <td>${row.outletName}</td>
+            <td>${row.specialName}</td>
+            <td>${row.quantityApproval}</td>
+            <td>${row.priceApproval}</td>
+            <td>${row.createdBy}</td>
+            <td>${row.createdAt}</td>
+            <td>${row.modifiedBy}</td>
+            <td>${row.modifiedAt}</td>
+            <td>
+              ${targetStatus === "Hidden"
+                ? `<i class="fas fa-eye-slash" onclick="toggleVisibility('${row.outletName}', 'Hidden')"></i>`
+                : `<i class="fas fa-eye" onclick="toggleVisibility('${row.outletName}', 'Active')"></i>`}
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    function toggleVisibility(outletName, targetStatus) {
+      const rowIndex = allRows.findIndex(row => row.outletName === outletName);
+      if (rowIndex !== -1) {
+        const row = allRows[rowIndex];
+        row.status = targetStatus;
+
+        if (targetStatus === "Hidden") {
+          hiddenRows.push(row);
+          activeRows.splice(activeRows.findIndex(row => row.outletName === outletName), 1);
+        } else {
+          activeRows.push(row);
+          hiddenRows.splice(hiddenRows.findIndex(row => row.outletName === outletName), 1);
+        }
+
+        row.modifiedBy = "Admin";
+        row.modifiedAt = new Date().toLocaleString();
+
+        renderTables();
+      }
+    }
+
+    function renderAllTable() {
+      const allTableBody = document.getElementById("allTableBody");
+      allTableBody.innerHTML = "";
+
+      allRows.forEach(row => {
+        allTableBody.innerHTML += `
+          <tr>
+            <td>${row.outletName}</td>
+            <td>${row.specialName}</td>
+            <td>${row.quantityApproval}</td>
+            <td>${row.priceApproval}</td>
+            <td>${row.createdBy}</td>
+            <td>${row.createdAt}</td>
+            <td>${row.modifiedBy}</td>
+            <td>${row.modifiedAt}</td>
+            <td>${row.status}</td>
+            <td>
+              ${row.status === "Active"
+                ? `<i class="fas fa-eye-slash" onclick="toggleVisibility('${row.outletName}', 'Hidden')"></i>`
+                : `<i class="fas fa-eye" onclick="toggleVisibility('${row.outletName}', 'Active')"></i>`}
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    populateOutletDropdown();
+    renderTables();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
