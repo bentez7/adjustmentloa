@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authorization Management</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="icon" href="../Images/Eco-Shop logo.png" type="image/png">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .main-container {
+      margin-top: 50px;
+    }
+    .pagination {
+      justify-content: center;
+    }
+    .fa-edit,
+    .fa-eye-slash,
+    .fa-eye {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container main-container">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3">
+        <div class="list-group">
+          <a href="QuantityApproval.html" class="list-group-item list-group-item-action">Approval by Quantity</a>
+          <a href="PriceApproval.html" class="list-group-item list-group-item-action">Approval by Price</a>
+          <a href="OutletRegionalSettings.html" class="list-group-item list-group-item-action">Outlet Regional Settings</a>
+          <a href="OutletPage.html" class="list-group-item list-group-item-action">Outlet Page</a>
+          <a href="OutletApproval.html" class="list-group-item list-group-item-action">Outlet Approval</a>
+          <a href="AuthorizationPage.html" class="list-group-item list-group-item-action active">Authorization Page</a>
+        </div>
+      </div>
+
+      <!-- Content Panel -->
+      <div class="col-md-9">
+        <h1 class="mb-4 text-center">Authorization Management</h1>
+        
+        <!-- Tabs for Active, Hidden, All -->
+        <ul class="nav nav-tabs mb-4" id="authorizationTabs" role="tablist">
+          <li class="nav-item">
+            <button class="nav-link active" id="active-tab" data-bs-toggle="tab" data-bs-target="#active" type="button" role="tab">Active</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" id="hidden-tab" data-bs-toggle="tab" data-bs-target="#hidden" type="button" role="tab">Hidden</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab">All</button>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <!-- Active Tab -->
+          <div class="tab-pane fade show active" id="active" role="tabpanel">
+            <h6>Active Roles</h6>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Role</th>
+                  <th>Access Rights</th>
+                  <th>Created By</th>
+                  <th>Created At</th>
+                  <th>Modified By</th>
+                  <th>Modified At</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="activeTableBody">
+                <!-- Active rows will appear here -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Hidden Tab -->
+          <div class="tab-pane fade" id="hidden" role="tabpanel">
+            <h6>Hidden Roles</h6>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Role</th>
+                  <th>Access Rights</th>
+                  <th>Created By</th>
+                  <th>Created At</th>
+                  <th>Modified By</th>
+                  <th>Modified At</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="hiddenTableBody">
+                <!-- Hidden rows will appear here -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- All Tab -->
+          <div class="tab-pane fade" id="all" role="tabpanel">
+            <h6>All Roles</h6>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Role</th>
+                  <th>Access Rights</th>
+                  <th>Created By</th>
+                  <th>Created At</th>
+                  <th>Modified By</th>
+                  <th>Modified At</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="allTableBody">
+                <!-- All rows will appear here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Input for Adding New Roles -->
+        <h6 class="mt-4 mb-3">Add New Role</h6>
+        <div class="row mb-3">
+          <div class="col">
+            <label for="roleDropdown" class="form-label">Role</label>
+            <select class="form-select" id="roleDropdown" onchange="updateAccessRights()">
+              <option value="">Select Role</option>
+              <option value="IT">IT</option>
+              <option value="ZONE">ZONE</option>
+              <option value="AM">AM</option>
+              <option value="Staff">Staff</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="accessRights" class="form-label">Access Rights</label>
+            <input type="text" class="form-control" id="accessRights" placeholder="Access Rights" readonly>
+          </div>
+          <div class="col">
+            <label for="createdBy" class="form-label">Created By</label>
+            <input type="text" class="form-control" id="createdBy" placeholder="Enter Creator Name">
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="addNewRole()">Add Role</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const activeRoles = [];
+    const hiddenRoles = [];
+    const allRoles = [];
+    const rowsPerPage = 5;
+    let activePage = 1;
+
+    const predefinedRoles = {
+      IT: "Maintenance",
+      ZONE: "Maintenance, Approval",
+      AM: "Maintenance, Approval",
+      Staff: "None",
+    };
+
+    function updateAccessRights() {
+      const selectedRole = document.getElementById("roleDropdown").value;
+      const accessRightsInput = document.getElementById("accessRights");
+      accessRightsInput.value = predefinedRoles[selectedRole] || "";
+    }
+
+    function addNewRole() {
+      const roleDropdown = document.getElementById("roleDropdown");
+      const roleName = roleDropdown.value;
+      const accessRights = document.getElementById("accessRights").value;
+      const createdBy = document.getElementById("createdBy").value;
+      const createdAt = new Date().toLocaleString();
+
+      if (!roleName || !accessRights || !createdBy) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      const newRole = {
+        roleName,
+        accessRights,
+        createdBy,
+        createdAt,
+        modifiedBy: "--",
+        modifiedAt: "--",
+        status: "Active",
+      };
+
+      activeRoles.push(newRole);
+      allRoles.push(newRole);
+
+      renderTables();
+      roleDropdown.value = "";
+      document.getElementById("accessRights").value = "";
+      document.getElementById("createdBy").value = "";
+    }
+
+    function toggleVisibility(roleName, targetStatus) {
+      const roleIndex = allRoles.findIndex(role => role.roleName === roleName);
+      if (roleIndex !== -1) {
+        const role = allRoles[roleIndex];
+        role.status = targetStatus;
+
+        if (targetStatus === "Hidden") {
+          hiddenRoles.push(role);
+          activeRoles.splice(activeRoles.findIndex(role => role.roleName === roleName), 1);
+        } else {
+          activeRoles.push(role);
+          hiddenRoles.splice(hiddenRoles.findIndex(role => role.roleName === roleName), 1);
+        }
+
+        role.modifiedBy = "Admin";
+        role.modifiedAt = new Date().toLocaleString();
+
+        renderTables();
+      }
+    }
+
+    function renderTables() {
+      renderTable(activeRoles, "activeTableBody", "Hidden");
+      renderTable(hiddenRoles, "hiddenTableBody", "Active");
+      renderAllTable();
+    }
+
+    function renderTable(roles, tableBodyId, targetStatus) {
+      const tableBody = document.getElementById(tableBodyId);
+      tableBody.innerHTML = "";
+
+      roles.forEach(role => {
+        tableBody.innerHTML += `
+          <tr>
+            <td>${role.roleName}</td>
+            <td>${role.accessRights}</td>
+            <td>${role.createdBy}</td>
+            <td>${role.createdAt}</td>
+            <td>${role.modifiedBy}</td>
+            <td>${role.modifiedAt}</td>
+            <td>
+              ${targetStatus === "Hidden"
+                ? `<i class="fas fa-eye-slash" onclick="toggleVisibility('${role.roleName}', 'Hidden')"></i>`
+                : `<i class="fas fa-eye" onclick="toggleVisibility('${role.roleName}', 'Active')"></i>`}
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    function renderAllTable() {
+      const allTableBody = document.getElementById("allTableBody");
+      allTableBody.innerHTML = "";
+
+      allRoles.forEach(role => {
+        allTableBody.innerHTML += `
+          <tr>
+            <td>${role.roleName}</td>
+            <td>${role.accessRights}</td>
+            <td>${role.createdBy}</td>
+            <td>${role.createdAt}</td>
+            <td>${role.modifiedBy}</td>
+            <td>${role.modifiedAt}</td>
+            <td>${role.status}</td>
+            <td>
+              ${role.status === "Active"
+                ? `<i class="fas fa-eye-slash" onclick="toggleVisibility('${role.roleName}', 'Hidden')"></i>`
+                : `<i class="fas fa-eye" onclick="toggleVisibility('${role.roleName}', 'Active')"></i>`}
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    renderTables();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
