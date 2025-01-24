@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outlet Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="icon" href="../Images/JayaGrocerlogo.webp" type="image/png">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .main-container {
+      margin-top: 50px;
+    }
+    .pagination {
+      justify-content: center;
+    }
+    .fa-edit {
+      cursor: pointer;
+    }
+    .logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .logo img {
+      max-width: 100px;
+    }
+    .navbar {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="MaintenancePage.html">
+        <i class="fa-solid fa-house"></i> Home
+      </a>
+      <div class="d-flex">
+        <a class="nav-link" href="LoginPage.html">
+          <i class="fa-solid fa-sign-out-alt"></i> Logout
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container main-container">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3">
+        <div class="list-group">
+          <a href="QuantityApproval.html" class="list-group-item list-group-item-action">Approval by Quantity</a>
+          <a href="PriceApproval.html" class="list-group-item list-group-item-action">Approval by Price</a>
+          <a href="OutletRegionalSettings.html" class="list-group-item list-group-item-action">Outlet Regional Settings</a>
+          <a href="OutletPage.html" class="list-group-item list-group-item-action active">Outlet Page</a>
+          <a href="OutletApproval.html" class="list-group-item list-group-item-action">Outlet Approval</a>
+          <a href="AuthorizationPage.html" class="list-group-item list-group-item-action">Authorization Page</a>
+        </div>
+      </div>
+
+      <!-- Content Panel -->
+      <div class="col-md-9">
+        <!-- Logo -->
+        <div class="logo">
+          <img src="../Images/JayaGrocerlogo.webp" alt="Eco-Shop Logo">
+        </div>
+
+        <!-- Page Title -->
+        <h1 class="mb-4 text-center">Outlet Page</h1>
+
+        <!-- Table -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Regional</th>
+              <th>Status</th>
+              <th>Created By</th>
+              <th>Created At</th>
+              <th>Modified By</th>
+              <th>Modified At</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="outletTableBody">
+            <!-- Rows will be dynamically added here -->
+          </tbody>
+        </table>
+
+        <!-- Input for Changing Regional -->
+        <h6 class="mt-4 mb-3">Assign/Change Regional</h6>
+        <div class="row mb-3">
+          <div class="col">
+            <label for="outletId" class="form-label">Outlet ID</label>
+            <input type="number" class="form-control" id="outletId" placeholder="Enter Outlet ID">
+          </div>
+          <div class="col">
+            <label for="regionalDropdown" class="form-label">Regional</label>
+            <select class="form-select" id="regionalDropdown">
+              <option value="">Select Regional</option>
+              <option value="Northern">Northern</option>
+              <option value="Central">Central</option>
+              <option value="Southern">Southern</option>
+              <option value="East Coast">East Coast</option>
+              <option value="Sabah">Sabah</option>
+              <option value="Sarawak">Sarawak</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="changeRegional()">Assign/Change Regional</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const outletRows = [
+      { id: 1, name: "Outlet A", regional: "Northern", status: "Active", createdBy: "Admin", createdAt: "2023-01-01", modifiedBy: "--", modifiedAt: "--" },
+      { id: 2, name: "Outlet B", regional: "Central", status: "Active", createdBy: "user1", createdAt: "2023-01-03", modifiedBy: "--", modifiedAt: "--" },
+      { id: 3, name: "Outlet C", regional: "Southern", status: "Active", createdBy: "Admin", createdAt: "2023-02-05", modifiedBy: "--", modifiedAt: "--" },
+      { id: 4, name: "Outlet D", regional: "East Coast", status: "Active", createdBy: "user2", createdAt: "2023-03-07", modifiedBy: "--", modifiedAt: "--" },
+      { id: 5, name: "Outlet F", regional: "Southern", status: "Active", createdBy: "Admin", createdAt: "2023-03-20", modifiedBy: "--", modifiedAt: "--" },
+      { id: 6, name: "Outlet G", regional: "Northern", status: "Active", createdBy: "system", createdAt: "2023-04-30", modifiedBy: "--", modifiedAt: "--" },
+    ];
+    const rowsPerPage = 5;
+    let activePage = 1;
+
+    // Assign or Change Regional
+    function changeRegional() {
+      const outletId = parseInt(document.getElementById("outletId").value);
+      const newRegional = document.getElementById("regionalDropdown").value;
+
+      if (!outletId || !newRegional) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      const outlet = outletRows.find(row => row.id === outletId);
+      if (!outlet) {
+        alert("Invalid Outlet ID.");
+        return;
+      }
+
+      outlet.regional = newRegional;
+      outlet.modifiedBy = "Admin";
+      outlet.modifiedAt = new Date().toLocaleString();
+      renderOutletTable();
+
+      // Reset fields
+      document.getElementById("outletId").value = "";
+      document.getElementById("regionalDropdown").value = "";
+    }
+
+    // Render the table
+    function renderOutletTable() {
+      const tableBody = document.getElementById("outletTableBody");
+      tableBody.innerHTML = "";
+
+      const startIndex = (activePage - 1) * rowsPerPage;
+      const endIndex = Math.min(startIndex + rowsPerPage, outletRows.length);
+      const rowsToShow = outletRows.slice(startIndex, endIndex);
+
+      rowsToShow.forEach(row => {
+        tableBody.innerHTML += `
+          <tr>
+            <td>${row.id}</td>
+            <td>${row.name}</td>
+            <td>${row.regional}</td>
+            <td>${row.status}</td>
+            <td>${row.createdBy}</td>
+            <td>${row.createdAt}</td>
+            <td>${row.modifiedBy}</td>
+            <td>${row.modifiedAt}</td>
+            <td><i class="fas fa-edit" onclick="editOutlet(${row.id})"></i></td>
+          </tr>
+        `;
+      });
+    }
+
+    renderOutletTable();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
