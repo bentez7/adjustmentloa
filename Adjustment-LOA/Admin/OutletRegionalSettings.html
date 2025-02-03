@@ -7,71 +7,17 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link rel="icon" href="../Images/Eco-Shop logo.png" type="image/png">
-  <style>
-    body {
-      background-color: #f8f9fa;
-    }
-    .main-container {
-      margin-top: 50px;
-    }
-    .filter-section {
-      margin-bottom: 20px;
-    }
-    .fa-edit {
-      cursor: pointer;
-    }
-    .navbar {
-      background-color: #fff;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    .navbar-brand img {
-      width: 30px;
-      margin-right: 10px;
-    }
-    .nav-link {
-      cursor: pointer;
-    }
-    .logout-icon {
-      font-size: 18px;
-      margin-left: 10px;
-      color: #dc3545;
-    }
-    .home-icon {
-      font-size: 20px;
-      margin-right: 10px;
-    }
-    .navbar-logo {
-      width: 40px;
-      height: auto;
-      margin-right: 10px;
-    }
-    .page-logo {
-      display: block;
-      margin: 0 auto;
-      width: 100px;
-      height: auto;
-    }
-    .page-title {
-      text-align: center;
-      margin-top: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid d-flex justify-content-between align-items-center">
-      <!-- Logo and Home Icon -->
       <div class="d-flex align-items-center">
         <a href="Maintenance.html">
           <img src="../Images/Eco-Shop logo.png" alt="Eco-Shop Logo" class="navbar-logo">
         </a>
-        <a class="navbar-brand" href="Maintenance.html">
-          <i class="fa-solid fa-house home-icon"></i>
-        </a>
+      ]
       </div>
-
-      <!-- Logout Button -->
       <div class="d-flex align-items-center">
         <a class="nav-link" href="LoginPage.html">
           <i class="fas fa-sign-out-alt logout-icon"></i> Logout
@@ -82,7 +28,6 @@
 
   <div class="container main-container">
     <div class="row">
-      <!-- Sidebar -->
       <div class="col-md-3">
         <div class="list-group">
           <a href="QuantityApproval.html" class="list-group-item list-group-item-action">Approval by Quantity</a>
@@ -94,43 +39,14 @@
         </div>
       </div>
 
-      <!-- Content Panel -->
       <div class="col-md-9">
-        <!-- Logo Above Title -->
         <img src="../Images/Eco-Shop logo.png" alt="Eco-Shop Logo" class="page-logo">
         <h1 class="mb-4 text-center page-title">Outlet Regional Settings</h1>
 
-        <!-- Filter Section -->
-        <div class="filter-section">
-          <h6>Filter by Region</h6>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="filterNorthern" value="Northern" onchange="applyFilter()">
-            <label class="form-check-label" for="filterNorthern">Northern</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="filterCentral" value="Central" onchange="applyFilter()">
-            <label class="form-check-label" for="filterCentral">Central</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="filterSouthern" value="Southern" onchange="applyFilter()">
-            <label class="form-check-label" for="filterSouthern">Southern</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="filterEastCoast" value="East Coast" onchange="applyFilter()">
-            <label class="form-check-label" for="filterEastCoast">East Coast</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="filterSabah" value="Sabah" onchange="applyFilter()">
-            <label class="form-check-label" for="filterSabah">Sabah</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="filterSarawak" value="Sarawak" onchange="applyFilter()">
-            <label class="form-check-label" for="filterSarawak">Sarawak</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="showAll" onchange="toggleShowAll()">
-            <label class="form-check-label" for="showAll">Show All</label>
-          </div>
+        <!-- Search and Add New Button Section -->
+        <div class="d-flex justify-content-between mb-3">
+          <input type="text" id="searchInput" class="form-control w-75" placeholder="Search Region" oninput="applySearch()">
+          <button class="btn btn-primary" onclick="addNewRegion()">Add New</button>
         </div>
 
         <!-- Table for Region Details -->
@@ -152,11 +68,14 @@
             <!-- Filtered rows will be dynamically added here -->
           </tbody>
         </table>
+
       </div>
     </div>
   </div>
 
   <script>
+    let currentPage = 1;
+    const rowsPerPage = 3;
     const regions = [
       { id: 1, regionName: "Northern", approvalByQtyId: "--", approvalByPriceId: "--", createdBy: "System", createdAt: new Date().toLocaleString(), modifiedBy: "--", modifiedAt: "--" },
       { id: 2, regionName: "Central", approvalByQtyId: "--", approvalByPriceId: "--", createdBy: "System", createdAt: new Date().toLocaleString(), modifiedBy: "--", modifiedAt: "--" },
@@ -186,48 +105,51 @@
       });
     }
 
-    function applyFilter() {
-      const selectedFilters = Array.from(document.querySelectorAll(".form-check-input:checked"))
-        .filter(input => input.id !== "showAll")
-        .map(input => input.value);
-
-      document.getElementById("showAll").checked = selectedFilters.length === 0;
-
-      const filteredRegions = selectedFilters.length > 0
-        ? regions.filter(region => selectedFilters.includes(region.regionName))
-        : regions;
-
+    function applySearch() {
+      const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+      const filteredRegions = regions.filter(region => region.regionName.toLowerCase().includes(searchTerm));
       renderRegionTable(filteredRegions);
     }
 
-    function toggleShowAll() {
-      const showAllChecked = document.getElementById("showAll").checked;
-
-      document.querySelectorAll(".form-check-input").forEach(input => {
-        if (input.id !== "showAll") input.checked = false;
-      });
-
-      if (showAllChecked) renderRegionTable(regions);
-    }
-
-    function editRegion(id) {
-      const region = regions.find(r => r.id === id);
-      if (region) {
-        const newModifiedBy = prompt("Enter your name for modification:", "Admin");
-        const newApprovalByQtyId = prompt("Enter new Approval by Quantity ID:", region.approvalByQtyId);
-        const newApprovalByPriceId = prompt("Enter new Approval by Price ID:", region.approvalByPriceId);
-
-        region.modifiedBy = newModifiedBy || region.modifiedBy;
-        region.modifiedAt = new Date().toLocaleString();
-        region.approvalByQtyId = newApprovalByQtyId || region.approvalByQtyId;
-        region.approvalByPriceId = newApprovalByPriceId || region.approvalByPriceId;
-
+    function addNewRegion() {
+      const regionName = prompt("Enter new region name:");
+      if (regionName) {
+        const newRegion = {
+          id: regions.length + 1,
+          regionName,
+          approvalByQtyId: "--",
+          approvalByPriceId: "--",
+          createdBy: "System",
+          createdAt: new Date().toLocaleString(),
+          modifiedBy: "--",
+          modifiedAt: "--"
+        };
+        regions.push(newRegion);
         renderRegionTable(regions);
       }
     }
 
-    renderRegionTable(regions);
+    function changePage(direction) {
+      currentPage += direction;
+      renderRegionTable(paginate(regions));
+    }
+
+    function paginate(data) {
+      const start = (currentPage - 1) * rowsPerPage;
+      const end = start + rowsPerPage;
+      return data.slice(start, end);
+    }
+
+    renderRegionTable(paginate(regions));
   </script>
+  <!-- Pagination UI -->
+  <ul class="pagination">
+    <li><a href="#">&laquo;</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">&raquo;</a></li>
+    </ul>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

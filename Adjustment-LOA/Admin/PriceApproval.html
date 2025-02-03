@@ -7,21 +7,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link rel="icon" href="../Images/Eco-Shop logo.png" type="image/png">
-  <style>
-    body {
-      background-color: #f8f9fa;
-    }
-    .main-container {
-      margin-top: 50px;
-    }
-    .pagination {
-      justify-content: center;
-    }
-    .fa-eye-slash,
-    .fa-eye {
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
   <div class="container main-container">
@@ -63,14 +50,14 @@
               <thead>
                 <tr>
                   <th>ID</th>
+                  <th>Name</th>
                   <th>Level 1 (RM)</th>
                   <th>Level 2 (RM)</th>
                   <th>Level 3 (RM)</th>
-                  <th>Created By</th>
                   <th>Created At</th>
                   <th>Modified By</th>
                   <th>Modified At</th>
-                  <th>Action</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody id="activeTableBody">
@@ -86,14 +73,14 @@
               <thead>
                 <tr>
                   <th>ID</th>
+                  <th>Name</th>
                   <th>Level 1 (RM)</th>
                   <th>Level 2 (RM)</th>
                   <th>Level 3 (RM)</th>
-                  <th>Created By</th>
                   <th>Created At</th>
                   <th>Modified By</th>
                   <th>Modified At</th>
-                  <th>Action</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody id="hiddenTableBody">
@@ -109,15 +96,15 @@
               <thead>
                 <tr>
                   <th>ID</th>
+                  <th>Name</th>
                   <th>Level 1 (RM)</th>
                   <th>Level 2 (RM)</th>
                   <th>Level 3 (RM)</th>
-                  <th>Created By</th>
                   <th>Created At</th>
                   <th>Modified By</th>
                   <th>Modified At</th>
                   <th>Status</th>
-                  <th>Action</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody id="allTableBody">
@@ -130,17 +117,18 @@
         <!-- Input for Adding New Levels -->
         <h6 class="mt-4 mb-3">Add New Levels</h6>
         <div class="row mb-3">
+
           <div class="col">
-            <label for="level1Threshold" class="form-label">Level 1 Threshold (RM)</label>
-            <input type="number" class="form-control" id="level1Threshold" placeholder="Enter Level 1 Threshold">
+            <label for="createdBy" class="form-label">Name </label>
+            <input type="text" class="form-control" id="createdBy" placeholder="Enter Name">
           </div>
           <div class="col">
-            <label for="level2Threshold" class="form-label">Level 2 Threshold (RM)</label>
-            <input type="number" class="form-control" id="level2Threshold" placeholder="Enter Level 2 Threshold">
+            <label for="level1Threshold" class="form-label">Level 1 (RM)</label>
+            <input type="number" class="form-control" id="level1Threshold" placeholder="Enter Level 1">
           </div>
           <div class="col">
-            <label for="createdBy" class="form-label">Created By</label>
-            <input type="text" class="form-control" id="createdBy" placeholder="Enter Creator Name">
+            <label for="level2Threshold" class="form-label">Level 2 (RM)</label>
+            <input type="number" class="form-control" id="level2Threshold" placeholder="Enter Level 2">
           </div>
         </div>
         <button class="btn btn-primary" onclick="addNewPriceLevel()">Add New Level</button>
@@ -268,8 +256,145 @@
     }
 
     renderTables();
-  </script>
+  
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    // Sample data initialization
+    const sampleData = [
+      {
+        id: 1,
+        name: "Sample 1",
+        level1Range: "RM1 - RM10",
+        level2Range: "RM11 - RM20",
+        level3Range: ">RM20",
+        createdAt: new Date().toLocaleString(),
+        modifiedBy: "--",
+        modifiedAt: "--",
+        status: "Unactive",
+      },
+      {
+        id: 2,
+        name: "Sample 2",
+        level1Range: "RM1 - RM5",
+        level2Range: "RM6 - RM15",
+        level3Range: "> RM15",
+        createdAt: new Date().toLocaleString(),
+        modifiedBy: "--",
+        modifiedAt: "--",
+        status: "Unactive",
+      },
+      {
+        id: 3,
+        name: "Sample 3",
+        level1Range: "RM1 - RM8",
+        level2Range: "RM9 - RM16",
+        level3Range: "> RM16",
+        createdAt: new Date().toLocaleString(),
+        modifiedBy: "--",
+        modifiedAt: "--",
+        status: "Unactive",
+      },
+      {
+        id: 4,
+        name: "Sample 4",
+        level1Range: "RM1 - RM7",
+        level2Range: "RM8 - RM14",
+        level3Range: "> RM14",
+        createdAt: new Date().toLocaleString(),
+        modifiedBy: "--",
+        modifiedAt: "--",
+        status: "Unactive",
+      },
+      {
+        id: 5,
+        name: "Sample 5",
+        level1Range: "RM1 - RM6",
+        level2Range: "RM7 - RM13",
+        level3Range: "> RM13",
+        createdAt: new Date().toLocaleString(),
+        modifiedBy: "--",
+        modifiedAt: "--",
+        status: "Unactive",
+      },
+      {
+        id: 6,
+        name: "Sample 6",
+        level1Range: "RM1 - RM9",
+        level2Range: "RM10 - RM18",
+        level3Range: "> RM18",
+        createdAt: new Date().toLocaleString(),
+        modifiedBy: "--",
+        modifiedAt: "--",
+        status: "Unactive",
+      },
+      {
+        id: 7,
+        name: "Sample 7",
+        level1Range: "RM1 - RM4",
+        level2Range: "RM5 - RM10",
+        level3Range: "> RM10",
+        createdAt: new Date().toLocaleString(),
+        modifiedBy: "--",
+        modifiedAt: "--",
+        status: "Unactive",
+      },
+      {
+        id: 8,
+        name: "Sample 8",
+        level1Range: "RM1 - RM3",
+        level2Range: "RM4 - RM8",
+        level3Range: ">RM8",
+        createdAt: new Date().toLocaleString(),
+        modifiedBy: "--",
+        modifiedAt: "--",
+        status: "Unactive",
+      },
+      {
+        id: 9,
+        name: "Sample 9",
+        level1Range: "RM1 - RM2",
+        level2Range: "RM3 - RM6",
+        level3Range: "> RM6",
+        createdAt: new Date().toLocaleString(),
+        modifiedBy: "--",
+        modifiedAt: "--",
+        status: "Unactive",
+      },
+      {
+        id: 10,
+        name: "Sample 10",
+        level1Range: "RM1 - RM5",
+        level2Range: "RM6 - RM12",
+        level3Range: "> RM12",
+        createdAt: new Date().toLocaleString(),
+        modifiedBy: "--",
+        modifiedAt: "--",
+        status: "Active",
+      },
+
+
+
+    ];
+
+    sampleData.forEach((data) => {
+      activeRows.push(data);
+      allRows.push(data);
+    });
+
+    renderTables();
+    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Pagination UI -->
+<ul class="pagination">
+<li><a href="#">&laquo;</a></li>
+<li><a href="#">1</a></li>
+<li><a href="#">2</a></li>
+<li><a href="#">3</a></li>
+<li><a href="#">&raquo;</a></li>
+</ul>
+
 </body>
 </html>

@@ -41,7 +41,7 @@
 
       <!-- Content Panel -->
       <div class="col-md-9">
-        <h1 class="mb-4 text-center">Authorization Management</h1>
+        <h1 class="mb-4 text-center">Authorizations</h1>
         
         <!-- Tabs for Active, Hidden, All -->
         <ul class="nav nav-tabs mb-4" id="authorizationTabs" role="tablist">
@@ -65,7 +65,6 @@
                 <tr>
                   <th>Role</th>
                   <th>Access Rights</th>
-                  <th>Created By</th>
                   <th>Created At</th>
                   <th>Modified By</th>
                   <th>Modified At</th>
@@ -86,7 +85,6 @@
                 <tr>
                   <th>Role</th>
                   <th>Access Rights</th>
-                  <th>Created By</th>
                   <th>Created At</th>
                   <th>Modified By</th>
                   <th>Modified At</th>
@@ -107,7 +105,6 @@
                 <tr>
                   <th>Role</th>
                   <th>Access Rights</th>
-                  <th>Created By</th>
                   <th>Created At</th>
                   <th>Modified By</th>
                   <th>Modified At</th>
@@ -138,10 +135,6 @@
           <div class="col">
             <label for="accessRights" class="form-label">Access Rights</label>
             <input type="text" class="form-control" id="accessRights" placeholder="Access Rights" readonly>
-          </div>
-          <div class="col">
-            <label for="createdBy" class="form-label">Created By</label>
-            <input type="text" class="form-control" id="createdBy" placeholder="Enter Creator Name">
           </div>
         </div>
         <button class="btn btn-primary" onclick="addNewRole()">Add Role</button>
