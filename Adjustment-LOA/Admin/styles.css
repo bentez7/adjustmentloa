@@ -90,10 +90,7 @@ body {
     .fa-edit {
       cursor: pointer;
     }
-    .navbar {
-      background-color: #fff;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
+  
     .navbar-brand img {
       width: 30px;
       margin-right: 10px;
@@ -108,11 +105,6 @@ body {
     }
     .home-icon {
       font-size: 20px;
-      margin-right: 10px;
-    }
-    .navbar-logo {
-      width: 40px;
-      height: auto;
       margin-right: 10px;
     }
     .page-logo {
@@ -140,16 +132,20 @@ body {
     .logo img {
       max-width: 100px;
     }
+    /* Increase the height of the navbar */
     .navbar {
-      margin-bottom: 20px;
+      padding: 20px 0; /* Adjust the top and bottom padding as needed */
     }
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+
+    /* Increase the size of the logo */
     .navbar-logo {
-      cursor: pointer;
+      height: 50px; /* Adjust the height as needed */
+      width: auto;  /* Maintain aspect ratio */
+    }
+
+    /* Increase the size of the user icon */
+    .fas.fa-user-circle {
+      font-size: 30px; /* Adjust the font size as needed */
     }
     .dropdown-menu {
       display: none;
