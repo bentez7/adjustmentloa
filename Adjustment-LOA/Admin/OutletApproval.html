@@ -27,6 +27,40 @@
   </style>
 </head>
 <body>
+
+  <nav class="navbar">
+    <!-- Logo on the left -->
+    <a href="../MainPage.html">
+      <img src="../Images/Eco-Shop logo.png" alt="Eco-Shop Logo" class="navbar-logo">
+    </a>
+
+    <!-- User icon on the right with dropdown -->
+    <div class="dropdown">
+      <i class="fas fa-user-circle" style="font-size: 24px; cursor: pointer;"></i>
+      <div class="dropdown-menu">
+        <a href="../LoginPage.html">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    // Get the user icon and dropdown menu elements
+    const userIcon = document.getElementById('userIcon');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+  
+    // Add click event listener to the user icon
+    userIcon.addEventListener('click', function() {
+      // Toggle the display property of the dropdown menu
+      dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+    });
+  
+    // Close the dropdown if clicked outside
+    window.addEventListener('click', function(event) {
+      if (!event.target.matches('#userIcon')) {
+        dropdownMenu.style.display = 'none';
+      }
+    });
+  </script>
   <div class="container main-container">
     <div class="row">
       <!-- Sidebar -->
