@@ -49,7 +49,7 @@
 
   <div class="sidebar">
     <div class="row">
-      <!-- Sidebar -->
+      <!-- Sidebar (Left) -->
       <div class="col-md-3">
         <div class="list-group">
           <a href="QuantityApproval.html" class="list-group-item list-group-item-action">Approval by Quantity</a>
@@ -60,10 +60,12 @@
           <a href="AuthorizationPage.html" class="list-group-item list-group-item-action">Authorization Page</a>
         </div>
       </div>
-
+  
+      <!-- Content (Right) -->
+      <div class="col-md-9">
         <!-- Page Title -->
         <h1 class="mb-4 text-center">Outlet Page</h1>
-
+  
         <!-- Table -->
         <table class="table">
           <thead>
@@ -83,28 +85,30 @@
             <!-- Rows will be dynamically added here -->
           </tbody>
         </table>
-
-        <!-- Input for Changing Regional -->
-        <h6 class="mt-4 mb-3">Assign/Change Regional</h6>
-        <div class="row mb-3">
-          <div class="col">
-            <label for="outletId" class="form-label">Outlet ID</label>
-            <input type="number" class="form-control" id="outletId" placeholder="Enter Outlet ID">
+  
+        <!-- Assign/Change Regional Form -->
+        <div class="card p-3 mt-4">
+          <h6 class="mb-3">Assign/Change Regional</h6>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="outletId" class="form-label">Outlet ID</label>
+              <input type="number" class="form-control" id="outletId" placeholder="Enter Outlet ID">
+            </div>
+            <div class="col-md-6">
+              <label for="regionalDropdown" class="form-label">Regional</label>
+              <select class="form-select" id="regionalDropdown">
+                <option value="">Select Regional</option>
+                <option value="Northern">Northern</option>
+                <option value="Central">Central</option>
+                <option value="Southern">Southern</option>
+                <option value="East Coast">East Coast</option>
+                <option value="Sabah">Sabah</option>
+                <option value="Sarawak">Sarawak</option>
+              </select>
+            </div>
           </div>
-          <div class="col">
-            <label for="regionalDropdown" class="form-label">Regional</label>
-            <select class="form-select" id="regionalDropdown">
-              <option value="">Select Regional</option>
-              <option value="Northern">Northern</option>
-              <option value="Central">Central</option>
-              <option value="Southern">Southern</option>
-              <option value="East Coast">East Coast</option>
-              <option value="Sabah">Sabah</option>
-              <option value="Sarawak">Sarawak</option>
-            </select>
-          </div>
+          <button class="btn btn-primary" onclick="changeRegional()">Assign/Change Regional</button>
         </div>
-        <button class="btn btn-primary" onclick="changeRegional()">Assign/Change Regional</button>
       </div>
     </div>
   </div>

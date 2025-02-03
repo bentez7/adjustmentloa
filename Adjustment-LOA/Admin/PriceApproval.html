@@ -178,9 +178,10 @@
     let activePage = 1;
 
     function addNewPriceLevel() {
+      const Name = document.getElementById("createdBy").value;
       const level1Threshold = parseInt(document.getElementById("level1Threshold").value);
       const level2Threshold = parseInt(document.getElementById("level2Threshold").value);
-      const createdBy = document.getElementById("createdBy").value;
+      
 
       if (!level1Threshold || !level2Threshold || level1Threshold >= level2Threshold) {
         alert("Please enter valid Level 1 and Level 2 thresholds.");
@@ -246,10 +247,10 @@
         tableBody.innerHTML += `
           <tr>
             <td>${row.id}</td>
+             <td>${row.name}</td>
             <td>${row.level1Range}</td>
             <td>${row.level2Range}</td>
             <td>${row.level3Range}</td>
-            <td>${row.createdBy}</td>
             <td>${row.createdAt}</td>
             <td>${row.modifiedBy}</td>
             <td>${row.modifiedAt}</td>
@@ -271,10 +272,10 @@
         allTableBody.innerHTML += `
           <tr>
             <td>${row.id}</td>
+            <td>${row.name}</td>
             <td>${row.level1Range}</td>
             <td>${row.level2Range}</td>
             <td>${row.level3Range}</td>
-            <td>${row.createdBy}</td>
             <td>${row.createdAt}</td>
             <td>${row.modifiedBy}</td>
             <td>${row.modifiedAt}</td>
