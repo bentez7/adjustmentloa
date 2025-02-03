@@ -171,7 +171,11 @@
             <td>${row.createdAt}</td>
             <td>${row.modifiedBy}</td>
             <td>${row.modifiedAt}</td>
-            <td><i class="fas fa-edit" onclick="editOutlet(${row.id})"></i></td>
+            <td>
+            <a href="OutletDetails.html?outletId=${row.id}" class="btn btn-info btn-sm" target="_blank">
+              <i class="fas fa-info-circle"></i> <!-- Font Awesome info icon -->
+            </a>
+            </td>
           </tr>
         `;
       });
