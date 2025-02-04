@@ -24,14 +24,29 @@ body {
     border-radius: 50%;
   }
   
-  form .btn {
-    margin-top: 20px;
-    width: 150px; 
-    height: 45px;
-    display: block; 
-    margin-left: 180px;
-    text-align: center; 
-  }
+/* Ensure that all input fields have the same width and no extra margins */
+.form-control {
+  width: 65%; /* Adjust width of the input fields */
+  display: inline-block;
+  margin-right: 10px; /* Slight gap between inputs */
+  margin-top: 40px;;
+}
+
+/* Make sure the inputs and button align horizontally */
+.row .col {
+  padding: 0;
+  margin-right: 10px;
+}
+
+
+/* Ensuring the button has the right height and looks consistent */
+.row .btn {
+  height: 45px;
+  vertical-align: middle;
+  text-align: center;
+  margin-top: 40px;;
+}
+
   
   .navbar-nav {
     gap: 150px; /* Increase spacing between links */
@@ -46,35 +61,82 @@ body {
     cursor: pointer;
   }
 
-  /* styles.css */
+  .pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+  }
+
   .pagination {
     display: flex;
-    justify-content: center;
-    margin-top: 20px;
+    gap: 10px;
+    font-size: 14px;
     list-style-type: none;
     padding: 0;
+    margin: 0;
   }
 
   .pagination li {
-    margin: 0 5px;
+    display: inline-block;
   }
 
   .pagination a {
+    padding: 5px 10px;
     text-decoration: none;
     color: #007bff;
-    padding: 8px 16px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 5px;
   }
 
-  .pagination a.active {
+  .pagination a:hover {
     background-color: #007bff;
     color: white;
-    border-color: #007bff;
   }
 
-  .pagination a:hover:not(.active) {
-    background-color: #ddd;
+  .checkbox-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .checkbox-container label {
+    margin: 0;
+  }
+
+  .checkbox-container input {
+    margin: 0 5px;
+  }
+
+  .form-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .form-container .btn {
+    height: 100%;
+  }
+
+  .table-container {
+    margin-top: 30px;
+  }
+
+  .form-control {
+    width: 65%;
+  }
+
+  /* Pagination Info */
+  .pagination-info {
+    font-size: 14px;
+    color: #555;
+  }
+
+  .items-per-page {
+    display: inline-block;
+    margin-top: 20px;
   }
 
   style>
@@ -174,7 +236,84 @@ body {
 
     /* Sidebar styles */
     .sidebar {
-        padding-left: 20px; /* Adjust padding to move the menu closer to the left border */
+        padding-left: 20px; 
     }
 
 
+    .tab-content{
+      margin-top: 5px;
+      margin-right: 80px;
+      width :1050px;
+
+    }
+
+    .main-container {
+      padding: 20px;
+    }
+
+    .d-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .active-filters {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .pagination-info {
+      font-size: 14px;
+    }
+
+    .pagination button {
+      padding: 0.5rem 1rem;
+    }
+
+    .pagination {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .pagination button.btn-sm {
+      padding: 0.2rem 0.5rem;
+    }
+
+    .table-container {
+      margin-top: 20px;
+    }
+
+    .table th,
+    .table td {
+      padding: 10px;
+    }
+
+    .sidebar {
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+
+    .sidebar .list-group-item {
+      cursor: pointer;
+    }
+
+    .sidebar .list-group-item:hover {
+      background-color: #ddd;
+    }
+
+
+    .active-filters-container {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+    
+    .dropdown .ms-2 {
+      margin-left: 8px;
+    }
+    
+  
+
+  
