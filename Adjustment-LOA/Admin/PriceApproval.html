@@ -14,8 +14,9 @@
 
 <style>
   body, p, span, h1, h6 {
-    font-family: 'Roboto', 'Roboto','Roboto','Roboto';
-    /* Adjusting Items per page and Active Filters */
+    font-family: 'Roboto', 'Roboto', 'Roboto', 'Roboto';
+  }
+
   .d-flex {
     font-size: 12px; /* Smaller font size */
   }
@@ -42,14 +43,36 @@
   #paginationInfo {
     font-size: 12px; /* Smaller pagination info text */
   }
+
   #itemsPerPage {
-  width: 70px;  /* Adjust width to make the dropdown smaller */
-  font-size: 14px;  /* Adjust font size */
-  padding: 5px;  /* Adjust padding to make it more compact */
-}
+    width: 70px;
+    font-size: 14px;
+    padding: 5px;
   }
- 
-  
+
+  .navbar-logo {
+    width: 100px;
+  }
+
+  .navbar {
+    background-color: #f8f9fa;
+    padding: 10px;
+  }
+
+  .sidebar {
+    background-color: #f8f9fa;
+    height: 100vh;
+    border-right: 1px solid #ddd;
+    padding-top: 20px;
+  }
+
+  .sidebar .list-group-item {
+    font-size: 14px;
+  }
+
+  .main-container {
+    padding: 20px;
+  }
 </style>
 
 <body>
@@ -69,10 +92,10 @@
     </div>
   </nav>
 
-  <div class="sidebar">
+  <div class="container-fluid">
     <div class="row">
       <!-- Sidebar -->
-      <div class="col-md-3">
+      <div class="col-md-3 sidebar">
         <div class="list-group">
           <a href="QuantityApproval.html" class="list-group-item list-group-item-action">Approval by Quantity</a>
           <a href="PriceApproval.html" class="list-group-item list-group-item-action">Approval by Price</a>
@@ -88,24 +111,23 @@
         <h1 class="mb-4 text-center">Approval by Quantity</h1>
 
         <!-- Content Panel -->
-      <div class="container main-container">
-
-        <div class="d-flex justify-content-between mb-4">
-          <!-- Filter Dropdown -->
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-              Filter
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="filterDropdown">
-              <li>
-                <label for="keywordFilter" class="form-label ms-2">Filter by Keyword...</label>
-                <input class="form-control" type="text" id="keywordFilter" placeholder="Enter keyword">
-              </li>
-              <li><input class="form-check-input" type="checkbox" id="checkboxAll"> All</li>
-              <li><input class="form-check-input" type="checkbox" id="checkboxActive"> Active</li>
-              <li><input class="form-check-input" type="checkbox" id="checkboxDeactive"> Deactive</li>
-            </ul>
-          </div>
+        <div class="container main-container">
+          <div class="d-flex justify-content-between mb-4">
+            <!-- Filter Dropdown -->
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                Filter
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                <li>
+                  <label for="keywordFilter" class="form-label ms-2">Filter by Keyword...</label>
+                  <input class="form-control" type="text" id="keywordFilter" placeholder="Enter keyword">
+                </li>
+                <li><input class="form-check-input" type="checkbox" id="checkboxAll"> All</li>
+                <li><input class="form-check-input" type="checkbox" id="checkboxActive"> Active</li>
+                <li><input class="form-check-input" type="checkbox" id="checkboxDeactive"> Deactive</li>
+              </ul>
+            </div>
 
             <div class="d-flex gap-2">
               <span>Active Filters:</span>
@@ -118,7 +140,6 @@
             </div>
             <button class="btn btn-link">Clear All Filters</button>
           </div>
-          
 
           <div class="d-flex justify-content-between align-items-center mb-4">
             <!-- Items Per Page Dropdown -->
@@ -129,10 +150,9 @@
                 <option value="50">50</option>
                 <option value="100">100</option>
               </select>
-              <div id="paginationInfo" class="me-3">  1–25 of 500 items</div>
-    
+              <div id="paginationInfo" class="me-3">1–25 of 500 items</div>
             </div>
-            
+
             <!-- Pagination Info and Controls -->
             <div class="d-flex align-items-center">
               <div class="pagination">
@@ -147,38 +167,35 @@
             </div>
           </div>
 
-          <!-- Button for Adding New Level -->
-          
-        </div>
-        <thead>
-          <tr>
-            <th colspan="9">
-              <div class="d-flex justify-content-between align-items-center">
-                <h6 class="m-0">Active Approvals</h6>
-                <!-- Add New link aligned to the right -->
-                <a href="#" class="text-dark add-new-link" style="font-size: 16px; font-weight: bold;" data-bs-toggle="modal" data-bs-target="#addLevelModal">Add New</a>              </div>
-            </th>
-          </tr>
-        </thead>
-        <table class="table">
-          <thead>    
+          <thead>
             <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Level 1 (RM)</th>
-              <th>Level 2 (RM)</th>
-              <th>Level 3 (RM)</th>
-              <th>Created Date</th>
-              <th>Modified By</th>
-              <th>Modified Date</th>
-              <th> </th>
-
+              <th colspan="9">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h6 class="m-0">Active Approvals</h6>
+                  <a href="#" class="text-dark add-new-link" style="font-size: 16px; font-weight: bold;" data-bs-toggle="modal" data-bs-target="#addLevelModal">Add New</a>
+                </div>
+              </th>
             </tr>
           </thead>
-          <tbody id="activeTableBody">
-            <!-- Active rows will appear here -->
-          </tbody>
-        </table>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Level 1 (RM)</th>
+                <th>Level 2 (RM)</th>
+                <th>Level 3 (RM)</th>
+                <th>Created Date (RM)</th>
+                <th>Modified By (RM)</th>
+                <th>Modified Date (RM)</th>
+                <th> </th>
+              </tr>
+            </thead>
+            <tbody id="activeTableBody">
+              <!-- Active rows will appear here -->
+            </tbody>
+          </table>
 
           <!-- Deactive Approvals Table -->
           <div id="DeactiveTableContainer" style="display: none;">
@@ -217,7 +234,6 @@
                   <th>Created Date</th>
                   <th>Modified By</th>
                   <th>Modified Date</th>
-                  <th>Status</th>
                   <th></th>
                 </tr>
               </thead>
@@ -272,19 +288,20 @@
     const allRows = [];
     let activePage = 1;
 
-    // Sample data initialization
-    const sampleData = [
-      { id: 1, name: "Sample 1", level1Range: "RM1 - RM10", level2Range: "RM11 - RM20", level3Range: "> RM20", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
-      { id: 2, name: "Sample 2", level1Range: "RM1 - RM5", level2Range: "RM6 - RM15", level3Range: "> RM15", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
-      { id: 3, name: "Sample 3", level1Range: "RM1 - RM8", level2Range: "RM9 - RM16", level3Range: "> RM16", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
-      { id: 4, name: "Sample 4", level1Range: "RM1 - RM7", level2Range: "RM8 - RM14", level3Range: "> RM14", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
-      { id: 5, name: "Sample 5", level1Range: "RM1 - RM6", level2Range: "RM7 - RM13", level3Range: "> RM13", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
-      { id: 6, name: "Sample 6", level1Range: "RM1 - RM9", level2Range: "RM10 - RM18", level3Range: "> RM18", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
-      { id: 7, name: "Sample 7", level1Range: "RM1 - RM4", level2Range: "RM5 - RM10", level3Range: "> RM10", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
-      { id: 8, name: "Sample 8", level1Range: "RM1 - RM3", level2Range: "RM4 - RM8", level3Range: "> RM8", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
-      { id: 9, name: "Sample 9", level1Range: "RM1 - RM2", level2Range: "RM3 - RM6", level3Range: "> RM6", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
-      { id: 10, name: "Sample 10", level1Range: "RM1 - RM5", level2Range: "RM6 - RM12", level3Range: "> RM12", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Active" }
-    ];
+  // Sample data initialization
+  const sampleData = [
+    { id: 1, name: "Sample 1", level1Range: "RM1 - RM10", level2Range: "RM11 - RM20", level3Range: "> RM20", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
+    { id: 2, name: "Sample 2", level1Range: "RM1 - RM5", level2Range: "RM6 - RM15", level3Range: "> RM15", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
+    { id: 3, name: "Sample 3", level1Range: "RM1 - RM8", level2Range: "RM9 - RM16", level3Range: "> RM16", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
+    { id: 4, name: "Sample 4", level1Range: "RM1 - RM7", level2Range: "RM8 - RM14", level3Range: "> RM14", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
+    { id: 5, name: "Sample 5", level1Range: "RM1 - RM6", level2Range: "RM7 - RM13", level3Range: "> RM13", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
+    { id: 6, name: "Sample 6", level1Range: "RM1 - RM9", level2Range: "RM10 - RM18", level3Range: "> RM18", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
+    { id: 7, name: "Sample 7", level1Range: "RM1 - RM4", level2Range: "RM5 - RM10", level3Range: "> RM10", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
+    { id: 8, name: "Sample 8", level1Range: "RM1 - RM3", level2Range: "RM4 - RM8", level3Range: "> RM8", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
+    { id: 9, name: "Sample 9", level1Range: "RM1 - RM2", level2Range: "RM3 - RM6", level3Range: "> RM6", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
+    { id: 10, name: "Sample 10", level1Range: "RM1 - RM5", level2Range: "RM6 - RM12", level3Range: "> RM12", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Active" }
+  ];
+
 
     sampleData.forEach((data) => {
       activeRows.push(data);

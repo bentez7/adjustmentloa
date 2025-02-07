@@ -14,8 +14,9 @@
 
 <style>
   body, p, span, h1, h6 {
-    font-family: 'Roboto', 'Roboto','Roboto','Roboto';
-    /* Adjusting Items per page and Active Filters */
+    font-family: 'Roboto', 'Roboto', 'Roboto', 'Roboto';
+  }
+
   .d-flex {
     font-size: 12px; /* Smaller font size */
   }
@@ -42,14 +43,36 @@
   #paginationInfo {
     font-size: 12px; /* Smaller pagination info text */
   }
+
   #itemsPerPage {
-  width: 70px;  /* Adjust width to make the dropdown smaller */
-  font-size: 14px;  /* Adjust font size */
-  padding: 5px;  /* Adjust padding to make it more compact */
-}
+    width: 70px;
+    font-size: 14px;
+    padding: 5px;
   }
- 
-  
+
+  .navbar-logo {
+    width: 100px;
+  }
+
+  .navbar {
+    background-color: #f8f9fa;
+    padding: 10px;
+  }
+
+  .sidebar {
+    background-color: #f8f9fa;
+    height: 100vh;
+    border-right: 1px solid #ddd;
+    padding-top: 20px;
+  }
+
+  .sidebar .list-group-item {
+    font-size: 14px;
+  }
+
+  .main-container {
+    padding: 20px;
+  }
 </style>
 
 <body>
@@ -69,10 +92,10 @@
     </div>
   </nav>
 
-  <div class="sidebar">
+  <div class="container-fluid">
     <div class="row">
       <!-- Sidebar -->
-      <div class="col-md-3">
+      <div class="col-md-3 sidebar">
         <div class="list-group">
           <a href="QuantityApproval.html" class="list-group-item list-group-item-action">Approval by Quantity</a>
           <a href="PriceApproval.html" class="list-group-item list-group-item-action">Approval by Price</a>
@@ -88,24 +111,23 @@
         <h1 class="mb-4 text-center">Approval by Quantity</h1>
 
         <!-- Content Panel -->
-      <div class="container main-container">
-
-        <div class="d-flex justify-content-between mb-4">
-          <!-- Filter Dropdown -->
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-              Filter
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="filterDropdown">
-              <li>
-                <label for="keywordFilter" class="form-label ms-2">Filter by Keyword...</label>
-                <input class="form-control" type="text" id="keywordFilter" placeholder="Enter keyword">
-              </li>
-              <li><input class="form-check-input" type="checkbox" id="checkboxAll"> All</li>
-              <li><input class="form-check-input" type="checkbox" id="checkboxActive"> Active</li>
-              <li><input class="form-check-input" type="checkbox" id="checkboxDeactive"> Deactive</li>
-            </ul>
-          </div>
+        <div class="container main-container">
+          <div class="d-flex justify-content-between mb-4">
+            <!-- Filter Dropdown -->
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                Filter
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                <li>
+                  <label for="keywordFilter" class="form-label ms-2">Filter by Keyword...</label>
+                  <input class="form-control" type="text" id="keywordFilter" placeholder="Enter keyword">
+                </li>
+                <li><input class="form-check-input" type="checkbox" id="checkboxAll"> All</li>
+                <li><input class="form-check-input" type="checkbox" id="checkboxActive"> Active</li>
+                <li><input class="form-check-input" type="checkbox" id="checkboxDeactive"> Deactive</li>
+              </ul>
+            </div>
 
             <div class="d-flex gap-2">
               <span>Active Filters:</span>
@@ -118,7 +140,6 @@
             </div>
             <button class="btn btn-link">Clear All Filters</button>
           </div>
-          
 
           <div class="d-flex justify-content-between align-items-center mb-4">
             <!-- Items Per Page Dropdown -->
@@ -129,10 +150,9 @@
                 <option value="50">50</option>
                 <option value="100">100</option>
               </select>
-              <div id="paginationInfo" class="me-3">  1–25 of 500 items</div>
-    
+              <div id="paginationInfo" class="me-3">1–25 of 500 items</div>
             </div>
-            
+
             <!-- Pagination Info and Controls -->
             <div class="d-flex align-items-center">
               <div class="pagination">
@@ -147,38 +167,35 @@
             </div>
           </div>
 
-          <!-- Button for Adding New Level -->
-          
-        </div>
-        <thead>
-          <tr>
-            <th colspan="9">
-              <div class="d-flex justify-content-between align-items-center">
-                <h6 class="m-0">Active Approvals</h6>
-                <!-- Add New link aligned to the right -->
-                <a href="#" class="text-dark add-new-link" style="font-size: 16px; font-weight: bold;" data-bs-toggle="modal" data-bs-target="#addLevelModal">Add New</a>              </div>
-            </th>
-          </tr>
-        </thead>
-        <table class="table">
-          <thead>    
+          <thead>
             <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Level 1</th>
-              <th>Level 2</th>
-              <th>Level 3</th>
-              <th>Created Date</th>
-              <th>Modified By</th>
-              <th>Modified Date</th>
-              <th> </th>
-
+              <th colspan="9">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h6 class="m-0">Active Approvals</h6>
+                  <a href="#" class="text-dark add-new-link" style="font-size: 16px; font-weight: bold;" data-bs-toggle="modal" data-bs-target="#addLevelModal">Add New</a>
+                </div>
+              </th>
             </tr>
           </thead>
-          <tbody id="activeTableBody">
-            <!-- Active rows will appear here -->
-          </tbody>
-        </table>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Level 1</th>
+                <th>Level 2</th>
+                <th>Level 3</th>
+                <th>Created Date</th>
+                <th>Modified By</th>
+                <th>Modified Date</th>
+                <th> </th>
+              </tr>
+            </thead>
+            <tbody id="activeTableBody">
+              <!-- Active rows will appear here -->
+            </tbody>
+          </table>
 
           <!-- Deactive Approvals Table -->
           <div id="DeactiveTableContainer" style="display: none;">
@@ -217,7 +234,6 @@
                   <th>Created Date</th>
                   <th>Modified By</th>
                   <th>Modified Date</th>
-                  <th>Status</th>
                   <th></th>
                 </tr>
               </thead>
