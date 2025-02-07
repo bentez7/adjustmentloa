@@ -1,3 +1,4 @@
+@import "tailwindcss";
 body {
     background-color: #f8f9fa;
   }
@@ -84,13 +85,13 @@ body {
   .pagination a {
     padding: 5px 10px;
     text-decoration: none;
-    color: #007bff;
+    color: #000000;
     border: 1px solid #ddd;
     border-radius: 5px;
   }
 
   .pagination a:hover {
-    background-color: #007bff;
+    background-color: #00000000;
     color: white;
   }
 
@@ -180,7 +181,6 @@ body {
       margin-top: 10px;
     }
 
-  
     
     .main-container {
       margin-top: 50px;
@@ -274,7 +274,7 @@ body {
     .pagination {
       display: flex;
       gap: 5px;
-      align-items: center;
+      align-items: baseline;
     }
 
     .pagination button.btn-sm {
@@ -288,6 +288,7 @@ body {
     .table th,
     .table td {
       padding: 10px;
+      font-size: 13px;
     }
 
     .sidebar {
@@ -313,7 +314,61 @@ body {
     .dropdown .ms-2 {
       margin-left: 8px;
     }
-    
-  
 
+    .d-flex {
+      display: inline-block;
+      gap: 10px; 
+      align-items:flex-end;
+      align-self: center; 
+    
+    
+    }
+    
+    .filter-container{
+      display: inline-block;
+    }
+    
+    .btn-link {
+      color: #0066ff;
+      font-size: 12px;
+      align-self: center; 
+    
+    }
+
+    .AddNewButton{
+      align-self: self-end;
+    }
+
+    
+    /* Styling for the table */
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .table tbody tr:nth-child(odd) {
+      background-color: #b0ccdd; /* Light color for odd rows */
+    }
+    
+    .table tbody tr:nth-child(even) {
+      background-color: #e3f2f7; /* Dark color for even rows */
+    }
+
+
+    /* Adding hover effect on table rows */
+    .table tr:hover td {
+      background-color: #fff59e; /* Slight color change when hovering over rows */
+    }
+
+    .table {
+      border: 1px solid #5757574b; /* Adds a border around the table */
+    }
   
+    
+    /* Icon container with relative positioning */
+    th .icon-container {
+      position: relative;
+      display: inline-block;
+    }
+
+   
