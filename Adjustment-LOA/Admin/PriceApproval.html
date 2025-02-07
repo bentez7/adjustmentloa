@@ -1,15 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Price Approval</title>
+  <title>Quantity Approval</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link rel="icon" href="../Images/Eco-Shop logo.png" type="image/png">
   <link rel="stylesheet" href="styles.css">
-
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 </head>
+
+<style>
+  body, p, span, h1, h6 {
+    font-family: 'Roboto', 'Roboto','Roboto','Roboto';
+    /* Adjusting Items per page and Active Filters */
+  .d-flex {
+    font-size: 12px; /* Smaller font size */
+  }
+
+  form .form-label {
+    font-size: 13px; /* Smaller label */
+  }
+
+  select, .btn {
+    font-size: 12px; /* Adjust button and select box font */
+    padding: 2px 10px; /* Make the select box and button smaller */
+  }
+
+  /* Adjusting Active Filters container */
+  .filter-container button {
+    font-size: 12px; /* Smaller font for filter buttons */
+    padding: 2px 8px; /* Smaller padding for buttons */
+  }
+
+  .pagination {
+    font-size: 12px; /* Make pagination font size smaller */
+  }
+
+  #paginationInfo {
+    font-size: 12px; /* Smaller pagination info text */
+  }
+  #itemsPerPage {
+  width: 70px;  /* Adjust width to make the dropdown smaller */
+  font-size: 14px;  /* Adjust font size */
+  padding: 5px;  /* Adjust padding to make it more compact */
+}
+  }
+ 
+  
+</style>
+
 <body>
 
   <nav class="navbar">
@@ -27,31 +69,13 @@
     </div>
   </nav>
 
-  <script>
-    // Get the user icon and dropdown menu elements
-    const userIcon = document.getElementById('userIcon');
-    const dropdownMenu = document.getElementById('dropdownMenu');
-  
-    // Add click event listener to the user icon
-    userIcon.addEventListener('click', function() {
-      // Toggle the display property of the dropdown menu
-      dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
-    });
-  
-    // Close the dropdown if clicked outside
-    window.addEventListener('click', function(event) {
-      if (!event.target.matches('#userIcon')) {
-        dropdownMenu.style.display = 'none';
-      }
-    });
-  </script>
   <div class="sidebar">
     <div class="row">
       <!-- Sidebar -->
       <div class="col-md-3">
         <div class="list-group">
-          <a href="QuantityApproval.html" class="list-group-item list-group-item-action">Approval by Quantity </a>
-          <a href="PriceApproval.html" class="list-group-item list-group-item-action">Approval by Price </a>
+          <a href="QuantityApproval.html" class="list-group-item list-group-item-action">Approval by Quantity</a>
+          <a href="PriceApproval.html" class="list-group-item list-group-item-action">Approval by Price</a>
           <a href="OutletRegionalSettings.html" class="list-group-item list-group-item-action">Outlet Regional Settings</a>
           <a href="OutletPage.html" class="list-group-item list-group-item-action">Outlet Page</a>
           <a href="AuthorizationPage.html" class="list-group-item list-group-item-action">Authorization Page</a>
@@ -61,184 +85,220 @@
 
       <!-- Content Panel -->
       <div class="col-md-9">
-        <h1 class="mb-4 text-center">Approval by Price</h1>
-        
-        <!-- Tabs for Active, Hidden, All -->
-        <ul class="nav nav-tabs mb-4" id="priceApprovalTabs" role="tablist">
-          <li class="nav-item">
-            <button class="nav-link active" id="active-tab" data-bs-toggle="tab" data-bs-target="#active" type="button" role="tab">Active</button>
-          </li>
-          <li class="nav-item">
-            <button class="nav-link" id="hidden-tab" data-bs-toggle="tab" data-bs-target="#hidden" type="button" role="tab">Hidden</button>
-          </li>
-          <li class="nav-item">
-            <button class="nav-link" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab">All</button>
-          </li>
-        </ul>
+        <h1 class="mb-4 text-center">Approval by Quantity</h1>
 
-        <div class="tab-content">
-          <!-- Active Tab -->
-          <div class="tab-pane fade show active" id="active" role="tabpanel">
-            <h6>Active Approvals</h6>
+        <!-- Content Panel -->
+      <div class="container main-container">
+
+        <div class="d-flex justify-content-between mb-4">
+          <!-- Filter Dropdown -->
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              Filter
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+              <li>
+                <label for="keywordFilter" class="form-label ms-2">Filter by Keyword...</label>
+                <input class="form-control" type="text" id="keywordFilter" placeholder="Enter keyword">
+              </li>
+              <li><input class="form-check-input" type="checkbox" id="checkboxAll"> All</li>
+              <li><input class="form-check-input" type="checkbox" id="checkboxActive"> Active</li>
+              <li><input class="form-check-input" type="checkbox" id="checkboxDeactive"> Deactive</li>
+            </ul>
+          </div>
+
+            <div class="d-flex gap-2">
+              <span>Active Filters:</span>
+              <div class="filter-container">
+                <button class="btn btn-primary">Keyword: Sample 1 ✕</button>
+              </div>
+              <div class="filter-container">
+                <button class="btn btn-primary">Status: Active ✕</button>
+              </div>
+            </div>
+            <button class="btn btn-link">Clear All Filters</button>
+          </div>
+          
+
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <!-- Items Per Page Dropdown -->
+            <div class="d-flex align-items-center">
+              <label for="itemsPerPage" class="form-label me-2">Items per page</label>
+              <select id="itemsPerPage" class="form-select" style="width: 70px;" onchange="updatePagination()">
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+              <div id="paginationInfo" class="me-3">  1–25 of 500 items</div>
+    
+            </div>
+            
+            <!-- Pagination Info and Controls -->
+            <div class="d-flex align-items-center">
+              <div class="pagination">
+                <ul class="pagination">
+                  <li><a href="#">«</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">»</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Button for Adding New Level -->
+          
+        </div>
+        <thead>
+          <tr>
+            <th colspan="9">
+              <div class="d-flex justify-content-between align-items-center">
+                <h6 class="m-0">Active Approvals</h6>
+                <!-- Add New link aligned to the right -->
+                <a href="#" class="text-dark add-new-link" style="font-size: 16px; font-weight: bold;" data-bs-toggle="modal" data-bs-target="#addLevelModal">Add New</a>              </div>
+            </th>
+          </tr>
+        </thead>
+        <table class="table">
+          <thead>    
+            <tr>
+              <th>ID (RM)</th>
+              <th>Name (RM)</th>
+              <th>Level 1 (RM)</th>
+              <th>Level 2 (RM)</th>
+              <th>Level 3 (RM)</th>
+              <th>Created Date (RM)</th>
+              <th>Modified By (RM)</th>
+              <th>Modified Date (RM)</th>
+              <th> </th>
+
+            </tr>
+          </thead>
+          <tbody id="activeTableBody">
+            <!-- Active rows will appear here -->
+          </tbody>
+        </table>
+
+          <!-- Deactive Approvals Table -->
+          <div id="DeactiveTableContainer" style="display: none;">
+            <h6>Deactive Approvals</h6>
             <table class="table">
               <thead>
                 <tr>
                   <th>ID</th>
                   <th>Name</th>
-                  <th>Level 1 (RM)</th>
-                  <th>Level 2 (RM)</th>
-                  <th>Level 3 (RM)</th>
-                  <th>Created At</th>
+                  <th>Level 1</th>
+                  <th>Level 2</th>
+                  <th>Level 3</th>
+                  <th>Created Date</th>
                   <th>Modified By</th>
-                  <th>Modified At</th>
+                  <th>Modified Date</th>
                   <th></th>
                 </tr>
               </thead>
-              <tbody id="activeTableBody">
-                <!-- Active rows appear here -->
+              <tbody id="DeactiveTableBody">
+                <!-- Deactive rows will appear here -->
               </tbody>
             </table>
           </div>
 
-          <!-- Hidden Tab -->
-          <div class="tab-pane fade" id="hidden" role="tabpanel">
-            <h6>Hidden Approvals</h6>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Level 1 (RM)</th>
-                  <th>Level 2 (RM)</th>
-                  <th>Level 3 (RM)</th>
-                  <th>Created At</th>
-                  <th>Modified By</th>
-                  <th>Modified At</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody id="hiddenTableBody">
-                <!-- Hidden rows appear here -->
-              </tbody>
-            </table>
-          </div>
-
-          <!-- All Tab -->
-          <div class="tab-pane fade" id="all" role="tabpanel">
+          <!-- All Approvals Table -->
+          <div id="allTableContainer" style="display: none;">
             <h6>All Approvals</h6>
             <table class="table">
               <thead>
                 <tr>
                   <th>ID</th>
                   <th>Name</th>
-                  <th>Level 1 (RM)</th>
-                  <th>Level 2 (RM)</th>
-                  <th>Level 3 (RM)</th>
-                  <th>Created At</th>
+                  <th>Level 1</th>
+                  <th>Level 2</th>
+                  <th>Level 3</th>
+                  <th>Created Date</th>
                   <th>Modified By</th>
-                  <th>Modified At</th>
+                  <th>Modified Date</th>
                   <th>Status</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody id="allTableBody">
-                <!-- All rows (active + hidden) appear here -->
+                <!-- All rows will appear here -->
               </tbody>
             </table>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <!-- Input for Adding New Levels -->
-        <h6 class="mt-4 mb-3">Add New Levels</h6>
-        <div class="row mb-3">
-
-          <div class="col">
-            <label for="createdBy" class="form-label">Name </label>
-            <input type="text" class="form-control" id="createdBy" placeholder="Enter Name">
-          </div>
-          <div class="col">
-            <label for="level1Threshold" class="form-label">Level 1 (RM)</label>
-            <input type="number" class="form-control" id="level1Threshold" placeholder="Enter Level 1">
-          </div>
-          <div class="col">
-            <label for="level2Threshold" class="form-label">Level 2 (RM)</label>
-            <input type="number" class="form-control" id="level2Threshold" placeholder="Enter Level 2">
+  <!-- Modal for Add New Level -->
+  <div class="modal fade" id="addLevelModal" tabindex="-1" aria-labelledby="addLevelModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addLevelModalLabel">Add New Level</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancel"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Content inside the modal -->
+          <div class="colunn-entry" style="flex: 1;">
+            <div class="col">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter Name">
+            </div>
+            <div class="col">
+              <label for="level1Threshold" class="form-label">Level 1</label>
+              <input type="number" class="form-control" id="level1Threshold" placeholder="Enter Level 1">
+            </div>
+            <div class="col">
+              <label for="level2Threshold" class="form-label">Level 2</label>
+              <input type="number" class="form-control" id="level2Threshold" placeholder="Enter Level 2">
+            </div>
           </div>
         </div>
-        <button class="btn btn-primary" onclick="addNewPriceLevel()">Add New Level</button>
+        <div class="modal-footer d-flex justify-content-between">
+          <!-- Save button inside the modal -->
+          <button type="button" class="btn btn-primary">Save</button>
+          <!-- Close button inside the modal -->
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
     const activeRows = [];
-    const hiddenRows = [];
+    const DeactiveRows = [];
     const allRows = [];
-    const rowsPerPage = 5;
     let activePage = 1;
 
-    function addNewPriceLevel() {
-      const Name = document.getElementById("createdBy").value;
-      const level1Threshold = parseInt(document.getElementById("level1Threshold").value);
-      const level2Threshold = parseInt(document.getElementById("level2Threshold").value);
-      
+    // Sample data initialization
+    const sampleData = [
+      { id: 1, name: "Sample 1", level1Range: "RM1 - RM10", level2Range: "RM11 - RM20", level3Range: "> RM20", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
+      { id: 2, name: "Sample 2", level1Range: "RM1 - RM5", level2Range: "RM6 - RM15", level3Range: "> RM15", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
+      { id: 3, name: "Sample 3", level1Range: "RM1 - RM8", level2Range: "RM9 - RM16", level3Range: "> RM16", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
+      { id: 4, name: "Sample 4", level1Range: "RM1 - RM7", level2Range: "RM8 - RM14", level3Range: "> RM14", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
+      { id: 5, name: "Sample 5", level1Range: "RM1 - RM6", level2Range: "RM7 - RM13", level3Range: "> RM13", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
+      { id: 6, name: "Sample 6", level1Range: "RM1 - RM9", level2Range: "RM10 - RM18", level3Range: "> RM18", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
+      { id: 7, name: "Sample 7", level1Range: "RM1 - RM4", level2Range: "RM5 - RM10", level3Range: "> RM10", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
+      { id: 8, name: "Sample 8", level1Range: "RM1 - RM3", level2Range: "RM4 - RM8", level3Range: "> RM8", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
+      { id: 9, name: "Sample 9", level1Range: "RM1 - RM2", level2Range: "RM3 - RM6", level3Range: "> RM6", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
+      { id: 10, name: "Sample 10", level1Range: "RM1 - RM5", level2Range: "RM6 - RM12", level3Range: "> RM12", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Active" }
+    ];
 
-      if (!level1Threshold || !level2Threshold || level1Threshold >= level2Threshold) {
-        alert("Please enter valid Level 1 and Level 2 thresholds.");
-        return;
-      }
+    sampleData.forEach((data) => {
+      activeRows.push(data);
+      allRows.push(data);
+    });
 
-      const id = allRows.length + 1;
-      const level1Range = `RM1 - RM${level1Threshold}`;
-      const level2Range = `RM${level1Threshold + 1} - RM${level2Threshold}`;
-      const level3Range = `> RM${level2Threshold}`;
-      const createdAt = new Date().toLocaleString();
-
-      const newRow = {
-        id,
-        level1Range,
-        level2Range,
-        level3Range,
-        createdBy,
-        createdAt,
-        modifiedBy: "--",
-        modifiedAt: "--",
-        status: "Active",
-      };
-
-      activeRows.push(newRow);
-      allRows.push(newRow);
-
-      renderTables();
-    }
-
-    function toggleVisibility(id, targetStatus) {
-      const rowIndex = allRows.findIndex(row => row.id === id);
-      if (rowIndex !== -1) {
-        const row = allRows[rowIndex];
-        row.status = targetStatus;
-
-        if (targetStatus === "Hidden") {
-          hiddenRows.push(row);
-          activeRows.splice(activeRows.findIndex(row => row.id === id), 1);
-        } else {
-          activeRows.push(row);
-          hiddenRows.splice(hiddenRows.findIndex(row => row.id === id), 1);
-        }
-
-        row.modifiedBy = "Admin";
-        row.modifiedAt = new Date().toLocaleString();
-
-        renderTables();
-      }
-    }
-
+    // Function to render the tables
     function renderTables() {
-      renderTable(activeRows, "activeTableBody", "Hidden");
-      renderTable(hiddenRows, "hiddenTableBody", "Active");
+      renderTable(activeRows, "activeTableBody", "Deactive");
+      renderTable(DeactiveRows, "DeactiveTableBody", "Active");
       renderAllTable();
     }
 
+    // Function to render the table
     function renderTable(rows, tableBodyId, targetStatus) {
       const tableBody = document.getElementById(tableBodyId);
       tableBody.innerHTML = "";
@@ -247,23 +307,24 @@
         tableBody.innerHTML += `
           <tr>
             <td>${row.id}</td>
-             <td>${row.name}</td>
+            <td>${row.name}</td>
             <td>${row.level1Range}</td>
             <td>${row.level2Range}</td>
             <td>${row.level3Range}</td>
-            <td>${row.createdAt}</td>
+            <td>${row.createdDate}</td>
             <td>${row.modifiedBy}</td>
-            <td>${row.modifiedAt}</td>
+            <td>${row.modifiedDate}</td>
             <td>
-              ${targetStatus === "Hidden"
-                ? `<i class="fas fa-eye-slash" onclick="toggleVisibility(${row.id}, 'Hidden')"></i>`
-                : `<i class="fas fa-eye" onclick="toggleVisibility(${row.id}, 'Active')"></i>`}
+              ${targetStatus === "Deactive"
+                ? `<i class="fas fa-eye-slash" onclick="toggleVisibility(${row.id}, 'Active')"></i>`
+                : `<i class="fas fa-eye" onclick="toggleVisibility(${row.id}, 'Deactive')"></i>`}
             </td>
           </tr>
         `;
       });
     }
 
+    // Function to render the "All" table
     function renderAllTable() {
       const allTableBody = document.getElementById("allTableBody");
       allTableBody.innerHTML = "";
@@ -276,160 +337,52 @@
             <td>${row.level1Range}</td>
             <td>${row.level2Range}</td>
             <td>${row.level3Range}</td>
-            <td>${row.createdAt}</td>
+            <td>${row.createdDate}</td>
             <td>${row.modifiedBy}</td>
-            <td>${row.modifiedAt}</td>
+            <td>${row.modifiedDate}</td>
             <td>${row.status}</td>
             <td>
               ${row.status === "Active"
-                ? `<i class="fas fa-eye-slash" onclick="toggleVisibility(${row.id}, 'Hidden')"></i>`
+                ? `<i class="fas fa-eye-slash" onclick="toggleVisibility(${row.id}, 'Deactive')"></i>`
                 : `<i class="fas fa-eye" onclick="toggleVisibility(${row.id}, 'Active')"></i>`}
             </td>
           </tr>
         `;
       });
     }
+    
 
+    // Function to toggle visibility between Active and Deactive
+    function toggleVisibility(id, targetStatus) {
+      const rowIndex = allRows.findIndex(row => row.id === id);
+      if (rowIndex !== -1) {
+        const row = allRows[rowIndex];
+        row.status = targetStatus;
+
+        if (targetStatus === "Deactive") {
+          DeactiveRows.push(row);
+          activeRows.splice(activeRows.findIndex(row => row.id === id), 1);
+        } else {
+          activeRows.push(row);
+          DeactiveRows.splice(DeactiveRows.findIndex(row => row.id === id), 1);
+        }
+
+        row.modifiedBy = "Admin";
+        row.modifiedDate = new Date().toLocaleString();
+
+        renderTables();
+      }
+    }
+
+    // Call this function to initialize the page and render the data
     renderTables();
-  
+    
 
+    
+  </script>
 
-
-    // Sample data initialization
-    const sampleData = [
-      {
-        id: 1,
-        name: "Sample 1",
-        level1Range: "RM1 - RM10",
-        level2Range: "RM11 - RM20",
-        level3Range: ">RM20",
-        createdAt: new Date().toLocaleString(),
-        modifiedBy: "--",
-        modifiedAt: "--",
-        status: "Unactive",
-      },
-      {
-        id: 2,
-        name: "Sample 2",
-        level1Range: "RM1 - RM5",
-        level2Range: "RM6 - RM15",
-        level3Range: "> RM15",
-        createdAt: new Date().toLocaleString(),
-        modifiedBy: "--",
-        modifiedAt: "--",
-        status: "Unactive",
-      },
-      {
-        id: 3,
-        name: "Sample 3",
-        level1Range: "RM1 - RM8",
-        level2Range: "RM9 - RM16",
-        level3Range: "> RM16",
-        createdAt: new Date().toLocaleString(),
-        modifiedBy: "--",
-        modifiedAt: "--",
-        status: "Unactive",
-      },
-      {
-        id: 4,
-        name: "Sample 4",
-        level1Range: "RM1 - RM7",
-        level2Range: "RM8 - RM14",
-        level3Range: "> RM14",
-        createdAt: new Date().toLocaleString(),
-        modifiedBy: "--",
-        modifiedAt: "--",
-        status: "Unactive",
-      },
-      {
-        id: 5,
-        name: "Sample 5",
-        level1Range: "RM1 - RM6",
-        level2Range: "RM7 - RM13",
-        level3Range: "> RM13",
-        createdAt: new Date().toLocaleString(),
-        modifiedBy: "--",
-        modifiedAt: "--",
-        status: "Unactive",
-      },
-      {
-        id: 6,
-        name: "Sample 6",
-        level1Range: "RM1 - RM9",
-        level2Range: "RM10 - RM18",
-        level3Range: "> RM18",
-        createdAt: new Date().toLocaleString(),
-        modifiedBy: "--",
-        modifiedAt: "--",
-        status: "Unactive",
-      },
-      {
-        id: 7,
-        name: "Sample 7",
-        level1Range: "RM1 - RM4",
-        level2Range: "RM5 - RM10",
-        level3Range: "> RM10",
-        createdAt: new Date().toLocaleString(),
-        modifiedBy: "--",
-        modifiedAt: "--",
-        status: "Unactive",
-      },
-      {
-        id: 8,
-        name: "Sample 8",
-        level1Range: "RM1 - RM3",
-        level2Range: "RM4 - RM8",
-        level3Range: ">RM8",
-        createdAt: new Date().toLocaleString(),
-        modifiedBy: "--",
-        modifiedAt: "--",
-        status: "Unactive",
-      },
-      {
-        id: 9,
-        name: "Sample 9",
-        level1Range: "RM1 - RM2",
-        level2Range: "RM3 - RM6",
-        level3Range: "> RM6",
-        createdAt: new Date().toLocaleString(),
-        modifiedBy: "--",
-        modifiedAt: "--",
-        status: "Unactive",
-      },
-      {
-        id: 10,
-        name: "Sample 10",
-        level1Range: "RM1 - RM5",
-        level2Range: "RM6 - RM12",
-        level3Range: "> RM12",
-        createdAt: new Date().toLocaleString(),
-        modifiedBy: "--",
-        modifiedAt: "--",
-        status: "Active",
-      },
-
-
-
-    ];
-
-    sampleData.forEach((data) => {
-      activeRows.push(data);
-      allRows.push(data);
-    });
-
-    renderTables();
-    </script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Pagination UI -->
-<ul class="pagination">
-<li><a href="#">&laquo;</a></li>
-<li><a href="#">1</a></li>
-<li><a href="#">2</a></li>
-<li><a href="#">3</a></li>
-<li><a href="#">&raquo;</a></li>
-</ul>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
