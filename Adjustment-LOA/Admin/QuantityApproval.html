@@ -56,62 +56,93 @@
   .navbar-logo {
     width: 20px;
   }
+
   /* Sidebar */
   .sidebar {
-      background: white;
-      box-shadow: 0px 0px 10px var(--clr-gray200);
-      width: 80px; /* Default width for collapsed */
-      height: calc(100vh - 60px); /* Adjusted to not overlap navbar */
-      position: fixed;
-      top: 60px; /* Push below navbar */
-      left: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 1rem;
-      transition: width 0.3s ease-in-out;
-      z-index: 900;
-      overflow: hidden;
+    background: white;
+    box-shadow: 0px 0px 10px var(--clr-gray200);
+    width: 65px; /* Default width for collapsed */
+    height: calc(100vh - 60px); /* Ensure it doesn't overlap the navbar */
+    position: fixed;
+    top: 60px; /* Push below navbar */
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+    transition: width 0.3s ease-in-out;
+    z-index: 900;
+    overflow: hidden;
   }
 
   /* Expanded Sidebar */
   .sidebar.expanded {
-      width: 250px;
+    width: 210px;
   }
 
-  /* Main Content */
-  .main-container {
-      margin-top: 80px; /* Prevent navbar overlap */
-      margin-left: 90px; /* Default margin when sidebar is collapsed */
-      transition: margin 0.3s ease-in-out, width 0.3s ease-in-out;
-      padding: 20px;
+  /* Sidebar Items */
+  .nav__list {
+    width: 100%;
+    padding: 0;
   }
 
-  /* Adjust Main Content When Sidebar Expands */
-  .sidebar.expanded ~ .main-container {
-      margin-left: 270px; /* Adjusted to shift content when sidebar expands */
+  .nav__item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+  }
+
+  .nav__item:hover {
+    background: var(--clr-gray200);
+  }
+
+  .sidenavbar-icon {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+    transition: transform 0.2s ease-in;
+  }
+
+  /* Hide Text in Collapsed State */
+  .sidebar.collapsed .nav__item span {
+    display: none;
+  }
+
+  /* Show Text in Expanded State */
+  .sidebar.expanded .nav__item span {
+    display: inline;
   }
 
   /* Toggle Button */
   .toggle-btn {
-      position: fixed;
-      top: 70px;
-      left: 90px;
-      font-size: 24px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: #000;
-      z-index: 950;
-      transition: left 0.3s ease-in-out;
+    position: fixed;
+    top: 70px;
+    left: 90px;
+    font-size: 24px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #000;
+    z-index: 950;
+    transition: left 0.3s ease-in-out;
   }
 
   /* Move Button When Sidebar Expands */
   .sidebar.expanded ~ .toggle-btn {
-      left: 270px;
+    left: 260px;
   }
 
-  
+  .main-container {
+    margin-top: 90px; /* Adjust to prevent navbar overlap */
+    margin-left: 150px; /* Default margin when sidebar is collapsed */
+    transition: margin 0.2s ease-in-out, width 0.2s ease-in-out;
+    padding: 20px;
+  }
+
+
 </style>
 
 <body>
@@ -171,13 +202,12 @@
   </button>
 
 
-      <!-- Content Panel -->
-      <div class="col-md-9">
-        <h1 class="mb-4 text-center">Approval by Quantity</h1>
 
         <!-- Content Panel -->
         <div class="container main-container">
+          <h1 class="mb-4 text-center">Approval by Quantity</h1>
           <div class="d-flex justify-content-between mb-4">
+            
             <!-- Filter Dropdown -->
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -359,10 +389,10 @@
 
       // Ensure the main container moves accordingly
       if (sidebar.classList.contains("expanded")) {
-          mainContainer.style.marginLeft = "270px";
+          mainContainer.style.marginLeft = "200px";
           toggleButton.style.left = "270px";
       } else {
-          mainContainer.style.marginLeft = "90px";
+          mainContainer.style.marginLeft = "150px";
           toggleButton.style.left = "90px";
       }
   });
