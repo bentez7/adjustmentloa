@@ -93,14 +93,9 @@ body, p, span, h1, h6 {
 
   :root {
     /* Color variables */
-    --clr-primary: #6aeeb5;
-    --clr-primary-hover: #29e6a7;
-    --clr-primary-dark: #039d69;
-    --clr-gray100: #f0f7f8;
-    --clr-gray200: #cfd8dc;
-    --clr-gray300: #a7b7be;
-    --clr-gray400: #6b7e86;
-    --clr-gray500: #425a65;
+
+    --clr-gray100: #f3f3f3f5;
+   
     --radius: 0.2rem;
   }
 
@@ -175,6 +170,11 @@ body, p, span, h1, h6 {
     transition: background 0.2s ease-in-out;
   }
 
+  .nav__item a {
+    color: black; /* Set custom color */
+    text-decoration: none;
+}
+
   .nav__item:hover {
     background: var(--clr-gray200);
   }
@@ -224,6 +224,15 @@ body, p, span, h1, h6 {
   .form-select{
     padding :1px
   }
+
+  .modal{
+    margin-top:210px;
+    margin-left: 60px;
+  }
+
+
+
+  
 
 
 
@@ -464,11 +473,41 @@ body, p, span, h1, h6 {
         </div>
       </div>
     </div>
+
+<!-- Add New Button (the one that will trigger the error modal) -->
+<a href="#" class="text-dark add-new-link" style="font-size: 16px; font-weight: bold;" data-bs-toggle="modal" data-bs-target="#errorModal">Add New</a>
+
+<!-- Error Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="fas fa-times-circle text-danger"></i> <!-- Error icon -->
+        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Couldn't connect to Sync servers. Please check your internet connection and try again.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
     
   </div>
   
 
   <script>
+
+  // Show Error Modal when "Add New" is clicked
+  const addNewButton = document.querySelector('.add-new-link');
+  addNewButton.addEventListener('click', function () {
+    // Trigger the error modal to open
+    const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+    errorModal.show();
+  });
 
   const sidebar = document.getElementById("sidebar");
   const toggleButton = document.getElementById("toggleSidebar");
