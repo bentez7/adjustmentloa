@@ -16,7 +16,8 @@
     margin-left: 250px; /* Default margin when sidebar is collapsed */
     transition: margin 0.2s ease-in-out, width 0.2s ease-in-out;
     padding:1px;
-    max-width: 70000%;
+    max-width: 7000%;
+
 
   }
   .pagination{
@@ -123,6 +124,7 @@
 
       <div class="col-md-9">
         <h1 class="mb-4 text-center">Authorizations</h1>
+
         
         <!-- Tabs for Active, Hidden, All -->
         <!-- <ul class="nav nav-tabs mb-4" id="authorizationTabs" role="tablist">
@@ -144,12 +146,13 @@
             <table class="table">
               <thead>
                 <tr>
+                  <th>ID</th>
                   <th>Role</th>
                   <th>Access Rights</th>
                   <th>Created At</th>
                   <th>Modified By</th>
                   <th>Modified At</th>
-                  <th>Action</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody id="activeTableBody">
@@ -226,6 +229,8 @@
 
   <script>
 
+   
+
   const sidebar = document.getElementById("sidebar");
   const toggleButton = document.getElementById("toggleSidebar");
   const mainContainer = document.querySelector(".main-container");
@@ -244,12 +249,8 @@
           toggleButton.style.left = "60px";  // Keeps button inside sidebar area
       }
   });
-    const activeRoles = [];
-    const hiddenRoles = [];
-    const allRoles = [];
-    const rowsPerPage = 5;
-    let activePage = 1;
 
+   // Define predefined roles FIRST
     const predefinedRoles = {
       IT: "Maintenance",
       ZONE: "Maintenance, Approval",
@@ -257,15 +258,50 @@
       Staff: "None",
     };
 
+    // Function to update Access Rights when Role is selected
     function updateAccessRights() {
       const selectedRole = document.getElementById("roleDropdown").value;
-      const accessRightsInput = document.getElementById("accessRights");
-      accessRightsInput.value = predefinedRoles[selectedRole] || "";
+      document.getElementById("accessRights").value = predefinedRoles[selectedRole] || "";
     }
 
-    function addNewRole() {
-      const roleDropdown = document.getElementById("roleDropdown");
-      const roleName = roleDropdown.value;
+
+  // Sample hardcoded roles (uses predefinedRoles correctly)
+  const sampleRoles = [
+    { role: "IT", accessRights: predefinedRoles["IT"], createdAt: "2024-01-15", modifiedBy: "--", modifiedAt: "--" },
+    { role: "ZONE", accessRights: predefinedRoles["ZONE"], createdAt: "2024-01-20", modifiedBy: "User B", modifiedAt: "2024-02-01" },
+    { role: "AM", accessRights: predefinedRoles["AM"], createdAt: "2024-02-02", modifiedBy: "User C", modifiedAt: "2024-02-10" },
+    { role: "Staff", accessRights: predefinedRoles["Staff"], createdAt: "2024-01-30", modifiedBy: "--", modifiedAt: "--" },
+    { role: "IT", accessRights: predefinedRoles["IT"], createdAt: "2024-01-10", modifiedBy: "User D", modifiedAt: "2024-02-05" },
+    { role: "ZONE", accessRights: predefinedRoles["ZONE"], createdAt: "2024-02-05", modifiedBy: "User E", modifiedAt: "2024-02-15" },
+    { role: "AM", accessRights: predefinedRoles["AM"], createdAt: "2024-01-25", modifiedBy: "--", modifiedAt: "--" },
+    { role: "Staff", accessRights: predefinedRoles["Staff"], createdAt: "2024-01-18", modifiedBy: "User F", modifiedAt: "2024-02-08" },
+    { role: "IT", accessRights: predefinedRoles["IT"], createdAt: "2024-02-03", modifiedBy: "User G", modifiedAt: "2024-02-14" },
+    { role: "ZONE", accessRights: predefinedRoles["ZONE"], createdAt: "2024-01-28", modifiedBy: "--", modifiedAt: "--" }
+  ];
+
+  // Function to populate the table
+  function renderTable() {
+    const tableBody = document.getElementById("activeTableBody");
+    tableBody.innerHTML = ""; // Clear any existing rows
+
+    sampleRoles.forEach((row, index) => {
+      const newRow = document.createElement("tr");
+      newRow.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${row.role}</td>
+        <td>${row.accessRights}</td>
+        <td>${row.createdAt}</td>
+        <td>${row.modifiedBy}</td>
+        <td>${row.modifiedAt}</td>
+        <td><i class="fas fa-pencil-alt text-primary edit-icon"></i></td>
+      `;
+      tableBody.appendChild(newRow);
+    });
+  }
+
+  // Function to add a new role
+  function addNewRole() {
+      const roleName = document.getElementById("roleDropdown").value;
       const accessRights = document.getElementById("accessRights").value;
       const createdBy = document.getElementById("createdBy").value;
       const createdAt = new Date().toLocaleString();
@@ -275,101 +311,29 @@
         return;
       }
 
+      // Create new role object
       const newRole = {
-        roleName,
-        accessRights,
-        createdBy,
-        createdAt,
+        role: roleName,
+        accessRights: accessRights,
+        createdBy: createdBy,
+        createdAt: createdAt,
         modifiedBy: "--",
-        modifiedAt: "--",
-        status: "Active",
+        modifiedAt: "--"
       };
 
-      activeRoles.push(newRole);
-      allRoles.push(newRole);
+      // Add the new role to sampleRoles array
+      sampleRoles.push(newRole);
+      renderTable();
 
-      renderTables();
-      roleDropdown.value = "";
+      // Reset inputs
+      document.getElementById("roleDropdown").value = "";
       document.getElementById("accessRights").value = "";
       document.getElementById("createdBy").value = "";
     }
 
-    function toggleVisibility(roleName, targetStatus) {
-      const roleIndex = allRoles.findIndex(role => role.roleName === roleName);
-      if (roleIndex !== -1) {
-        const role = allRoles[roleIndex];
-        role.status = targetStatus;
-
-        if (targetStatus === "Hidden") {
-          hiddenRoles.push(role);
-          activeRoles.splice(activeRoles.findIndex(role => role.roleName === roleName), 1);
-        } else {
-          activeRoles.push(role);
-          hiddenRoles.splice(hiddenRoles.findIndex(role => role.roleName === roleName), 1);
-        }
-
-        role.modifiedBy = "Admin";
-        role.modifiedAt = new Date().toLocaleString();
-
-        renderTables();
-      }
-    }
-
-    function renderTables() {
-      renderTable(activeRoles, "activeTableBody", "Hidden");
-      renderTable(hiddenRoles, "hiddenTableBody", "Active");
-      renderAllTable();
-    }
-
-    function renderTable(roles, tableBodyId, targetStatus) {
-      const tableBody = document.getElementById(tableBodyId);
-      tableBody.innerHTML = "";
-
-      roles.forEach(role => {
-        tableBody.innerHTML += `
-          <tr>
-            <td>${role.roleName}</td>
-            <td>${role.accessRights}</td>
-            <td>${role.createdBy}</td>
-            <td>${role.createdAt}</td>
-            <td>${role.modifiedBy}</td>
-            <td>${role.modifiedAt}</td>
-            <td>
-              ${targetStatus === "Hidden"
-                ? `<i class="fas fa-eye-slash" onclick="toggleVisibility('${role.roleName}', 'Hidden')"></i>`
-                : `<i class="fas fa-eye" onclick="toggleVisibility('${role.roleName}', 'Active')"></i>`}
-            </td>
-          </tr>
-        `;
-      });
-    }
-
-    function renderAllTable() {
-      const allTableBody = document.getElementById("allTableBody");
-      allTableBody.innerHTML = "";
-
-      allRoles.forEach(role => {
-        allTableBody.innerHTML += `
-          <tr>
-            <td>${role.roleName}</td>
-            <td>${role.accessRights}</td>
-            <td>${role.createdBy}</td>
-            <td>${role.createdAt}</td>
-            <td>${role.modifiedBy}</td>
-            <td>${role.modifiedAt}</td>
-            <td>${role.status}</td>
-            <td>
-              ${role.status === "Active"
-                ? `<i class="fas fa-eye-slash" onclick="toggleVisibility('${role.roleName}', 'Hidden')"></i>`
-                : `<i class="fas fa-eye" onclick="toggleVisibility('${role.roleName}', 'Active')"></i>`}
-            </td>
-          </tr>
-        `;
-      });
-    }
-
-    renderTables();
-  </script>
+    // Render table on page load
+    document.addEventListener("DOMContentLoaded", renderTable);
+</script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
