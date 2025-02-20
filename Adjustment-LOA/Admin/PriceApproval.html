@@ -102,7 +102,7 @@
                 </li>
                 <li><input class="form-check-input" type="checkbox" id="checkboxAll"> All</li>
                 <li><input class="form-check-input" type="checkbox" id="checkboxActive"> Active</li>
-                <li><input class="form-check-input" type="checkbox" id="checkboxDeactive"> Deactive</li>
+                <li><input class="form-check-input" type="checkbox" id="checkboxInactive"> Inactive</li>
               </ul>
             </div>
 
@@ -136,7 +136,7 @@
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>Outlet</th>
                 <th>Level 1 (RM)</th>
                 <th>Level 2 (RM)</th>
                 <th>Level 3 (RM)</th>
@@ -151,14 +151,14 @@
             </tbody>
           </table>
 
-          <!-- Deactive Approvals Table -->
-          <div id="DeactiveTableContainer" style="display: none;">
-            <h6>Deactive Approvals</h6>
+          <!-- Inactive Approvals Table -->
+          <div id="InactiveTableContainer" style="display: none;">
+            <h6>Inactive Approvals</h6>
             <table class="table">
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Name</th>
+                  <th>Outlet</th>
                   <th>Level 1 (RM)</th>
                   <th>Level 2 (RM)</th>
                   <th>Level 3 (RM)</th>
@@ -168,8 +168,8 @@
                   <th></th>
                 </tr>
               </thead>
-              <tbody id="DeactiveTableBody">
-                <!-- Deactive rows will appear here -->
+              <tbody id="InactiveTableBody">
+                <!-- Inactive rows will appear here -->
               </tbody>
             </table>
           </div>
@@ -181,7 +181,7 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Name</th>
+                  <th>Outlet</th>
                   <th>Level 1 (RM)</th>
                   <th>Level 2 (RM)</th>
                   <th>Level 3 (RM)</th>
@@ -241,8 +241,8 @@
           <!-- Content inside the modal -->
           <div class="colunn-entry" style="flex: 1;">
             <div class="col">
-              <label for="name" class="form-label">Name</label>
-              <input type="text" class="form-control" id="name" placeholder="Enter Name">
+              <label for="name" class="form-label">Outlet</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter Outlet">
             </div>
             <div class="col">
               <label for="level1Threshold" class="form-label">Level 1</label>
@@ -319,22 +319,22 @@
 
 
     const activeRows = [];
-    const DeactiveRows = [];
+    const InactiveRows = [];
     const allRows = [];
     let activePage = 1;
 
     // Sample data initialization
     const sampleData = [
-      { id: 1, name: "Sample 1", level1Range: "1 - 10", level2Range: "11 - 20", level3Range: "> 20", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
-      { id: 2, name: "Sample 2", level1Range: "1 - 5", level2Range: "6 - 15", level3Range: "> 15", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
-      { id: 3, name: "Sample 3", level1Range: "1 - 8", level2Range: "9 - 16", level3Range: "> 16", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
-      { id: 4, name: "Sample 4", level1Range: "1 - 7", level2Range: "8 - 14", level3Range: "> 14", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
-      { id: 5, name: "Sample 5", level1Range: "1 - 6", level2Range: "7 - 13", level3Range: "> 13", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
-      { id: 6, name: "Sample 6", level1Range: "1 - 9", level2Range: "10 - 18", level3Range: "> 18", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
-      { id: 7, name: "Sample 7", level1Range: "1 - 4", level2Range: "5 - 10", level3Range: "> 10", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
-      { id: 8, name: "Sample 8", level1Range: "1 - 3", level2Range: "4 - 8", level3Range: "> 8", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
-      { id: 9, name: "Sample 9", level1Range: "1 - 2", level2Range: "3 - 6", level3Range: "> 6", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Unactive" },
-      { id: 10, name: "Sample 10", level1Range: "1 - 5", level2Range: "6 - 12", level3Range: "> 12", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Active" }
+      { id: 1, name: "BSJ - SUBANG JAYA", level1Range: "RM1 - RM10", level2Range: "RM11 - RM20", level3Range: "> RM20", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Active" },
+      { id: 2, name: "JVS - TAMAN UNIVERSITI", level1Range: "RM1 - RM5", level2Range: "RM6 - RM15", level3Range: "> RM15", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Inactive" },
+      { id: 3, name: "BGK - GM KLANG", level1Range: "RM1 - RM8", level2Range: "RM9 - RM16", level3Range: "> RM16", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Active" },
+      { id: 4, name: "BJY - PUTRAJAYA", level1Range: "RM1 - RM7", level2Range: "RM8 - RM14", level3Range: "> RM14", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Inactive" },
+      { id: 5, name: "PKS - KEPALA BATAS", level1Range: "RM1 - RM6", level2Range: "RM7 - RM13", level3Range: "> RM13", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Inactive" },
+      { id: 6, name: "BWS - AEON SETIAWANGSA", level1Range: "RM1 - RM9", level2Range: "RM10 - RM18", level3Range: "> RM18", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Active" },
+      { id: 7, name: "DKK - KUALA KRAI", level1Range: "RM1 - RM4", level2Range: "RM5 - RM10", level3Range: "> RM10", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Active" },
+      { id: 8, name: "NSN - SENAWANG", level1Range: "RM1 - RM3", level2Range: "RM4 - RM8", level3Range: "> RM8", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Inactive" },
+      { id: 9, name: "JSG - U SENTRAL SEGAMAT", level1Range: "RM1 - RM2", level2Range: "RM3 - RM6", level3Range: "> RM6", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Inactive" },
+      { id: 10, name: "BMK - METRO KAJANG", level1Range: "RM1 - RM5", level2Range: "RM6 - RM12", level3Range: "> RM12", createdDate: new Date().toLocaleString(), modifiedBy: "--", modifiedDate: "--", status: "Active" }
     ];
 
     sampleData.forEach((data) => {
@@ -344,8 +344,8 @@
 
     // Function to render the tables
     function renderTables() {
-      renderTable(activeRows, "activeTableBody", "Deactive");
-      renderTable(DeactiveRows, "DeactiveTableBody", "Active");
+      renderTable(activeRows, "activeTableBody", "Inactive");
+      renderTable(InactiveRows, "InactiveTableBody", "Active");
       renderAllTable();
     }
 
@@ -366,9 +366,9 @@
             <td>${row.modifiedBy}</td>
             <td>${row.modifiedDate}</td>
             <td>
-              ${targetStatus === "Deactive"
+              ${targetStatus === "Inactive"
                 ? `<i class="fas fa-eye-slash" onclick="toggleVisibility(${row.id}, 'Active')"></i>`
-                : `<i class="fas fa-eye" onclick="toggleVisibility(${row.id}, 'Deactive')"></i>`}
+                : `<i class="fas fa-eye" onclick="toggleVisibility(${row.id}, 'Inactive')"></i>`}
             </td>
           </tr>
         `;
@@ -394,7 +394,7 @@
             <td>${row.status}</td>
             <td>
               ${row.status === "Active"
-                ? `<i class="fas fa-eye-slash" onclick="toggleVisibility(${row.id}, 'Deactive')"></i>`
+                ? `<i class="fas fa-eye-slash" onclick="toggleVisibility(${row.id}, 'Inactive')"></i>`
                 : `<i class="fas fa-eye" onclick="toggleVisibility(${row.id}, 'Active')"></i>`}
             </td>
           </tr>
@@ -403,19 +403,19 @@
     }
     
 
-    // Function to toggle visibility between Active and Deactive
+    // Function to toggle visibility between Active and Inactive
     function toggleVisibility(id, targetStatus) {
       const rowIndex = allRows.findIndex(row => row.id === id);
       if (rowIndex !== -1) {
         const row = allRows[rowIndex];
         row.status = targetStatus;
 
-        if (targetStatus === "Deactive") {
-          DeactiveRows.push(row);
+        if (targetStatus === "Inactive") {
+          InactiveRows.push(row);
           activeRows.splice(activeRows.findIndex(row => row.id === id), 1);
         } else {
           activeRows.push(row);
-          DeactiveRows.splice(DeactiveRows.findIndex(row => row.id === id), 1);
+          InactiveRows.splice(InactiveRows.findIndex(row => row.id === id), 1);
         }
 
         row.modifiedBy = "Admin";

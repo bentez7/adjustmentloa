@@ -141,7 +141,7 @@
               <th>Created At</th>
               <th>Modified By</th>
               <th>Modified At</th>
-              <th>Action</th>
+              <th></th>
             </tr>
           </thead>
           <tbody id="regionTableBody">
@@ -263,12 +263,12 @@ addNewButton.addEventListener('click', function () {
     let currentPage = 1;
     const rowsPerPage = 3;
     const regions = [
-      { id: 1, regionName: "Northern", approvalByQtyId: "--", approvalByPriceId: "--", createdBy: "System", createdAt: new Date().toLocaleString(), modifiedBy: "--", modifiedAt: "--" },
+      { id: 1, regionName: "Northern", approvalByQtyId: "--", approvalByPriceId: "--", createdBy: "ZONE", createdAt: new Date().toLocaleString(), modifiedBy: "--", modifiedAt: "--" },
       { id: 2, regionName: "Central", approvalByQtyId: "--", approvalByPriceId: "--", createdBy: "System", createdAt: new Date().toLocaleString(), modifiedBy: "--", modifiedAt: "--" },
-      { id: 3, regionName: "Southern", approvalByQtyId: "--", approvalByPriceId: "--", createdBy: "System", createdAt: new Date().toLocaleString(), modifiedBy: "--", modifiedAt: "--" },
-      { id: 4, regionName: "East Coast", approvalByQtyId: "--", approvalByPriceId: "--", createdBy: "System", createdAt: new Date().toLocaleString(), modifiedBy: "--", modifiedAt: "--" },
-      { id: 5, regionName: "Sabah", approvalByQtyId: "--", approvalByPriceId: "--", createdBy: "System", createdAt: new Date().toLocaleString(), modifiedBy: "--", modifiedAt: "--" },
-      { id: 6, regionName: "Sarawak", approvalByQtyId: "--", approvalByPriceId: "--", createdBy: "System", createdAt: new Date().toLocaleString(), modifiedBy: "--", modifiedAt: "--" }
+      { id: 3, regionName: "Southern", approvalByQtyId: "--", approvalByPriceId: "--", createdBy: "AM", createdAt: new Date().toLocaleString(), modifiedBy: "--", modifiedAt: "--" },
+      { id: 4, regionName: "East Coast", approvalByQtyId: "--", approvalByPriceId: "--", createdBy: "STAFF", createdAt: new Date().toLocaleString(), modifiedBy: "--", modifiedAt: "--" },
+      { id: 5, regionName: "Sabah", approvalByQtyId: "--", approvalByPriceId: "--", createdBy: "IT", createdAt: new Date().toLocaleString(), modifiedBy: "--", modifiedAt: "--" },
+      { id: 6, regionName: "Sarawak", approvalByQtyId: "--", approvalByPriceId: "--", createdBy: "Admin", createdAt: new Date().toLocaleString(), modifiedBy: "--", modifiedAt: "--" }
     ];
 
     function renderRegionTable(filteredRegions) {
