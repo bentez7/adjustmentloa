@@ -7,24 +7,40 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link rel="icon" href="../Images/Eco-Shop logo.png" type="image/png">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles2.css">
 </head>
 <body>
+  <style>
+  .main-container {
+    margin-top: 120px; /* Adjust to prevent navbar overlap */
+    margin-left: 230px; /* Default margin when sidebar is collapsed */
+    transition: margin 0.2s ease-in-out, width 0.2s ease-in-out;
+    padding:1px;
+    max-width: 70000%;
 
-  <nav class="navbar">
-    <!-- Logo on the left -->
-    <a href="../MainPage.html">
-      <img src="../Images/Eco-Shop logo.png" alt="Eco-Shop Logo" class="navbar-logo">
-    </a>
+  
+  }
 
-    <!-- User icon on the right with dropdown -->
-    <div class="dropdown">
-      <i class="fas fa-user-circle" style="font-size: 24px; cursor: pointer;"></i>
-      <div class="dropdown-menu">
-        <a href="../LoginPage.html">Logout</a>
+  .pagination{
+    margin-left:320px;
+  }
+  
+  </style>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <a href="../MainPage.html">
+        <img src="../Images/Eco-Shop logo.png" alt="Eco-Shop Logo" class="navbar-logo">
+      </a>
+      <div class="dropdown user-dropdown">
+        <button class="btn dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fas fa-user-circle user-icon"></i>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="userDropdown">
+          <li><a class="dropdown-item" href="../LoginPage.html">Log Out</a></li>
+        </ul>
       </div>
-    </div>
-  </nav>
+    </nav>
 
   <script>
     // Get the user icon and dropdown menu elements
@@ -45,28 +61,73 @@
     });
   </script>
 
+    <!-- Sidebar -->
+  <button id="toggleSidebar" class="toggle-btn">
+    <i id="toggleIcon" class="fas fa-arrow-right"></i>
+  </button>
 
-  <div class="sidebar">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="list-group">
-          <a href="QuantityApproval.html" class="list-group-item list-group-item-action">Approval by Quantity</a>
-          <a href="PriceApproval.html" class="list-group-item list-group-item-action">Approval by Price</a>
-          <a href="OutletRegionalSettings.html" class="list-group-item list-group-item-action active">Outlet Regional Settings</a>
-          <a href="OutletPage.html" class="list-group-item list-group-item-action">Outlet Page</a>
-          <a href="AuthorizationPage.html" class="list-group-item list-group-item-action">Authorization Page</a>
-          <a href="OutletApproval.html" class="list-group-item list-group-item-action">Outlet Approval</a>
-        </div>
-      </div>
+  <div class="sidebar collapsed" id="sidebar">
+    <ul class="nav__list">
+      
+      <!-- Group: Maintenance -->
+      <li class="nav-heading">Maintenance</li>
+      <li class="nav__item">
+        <a href="QuantityApproval.html">
+          <img src="../Images/Sidenavbar/QuantityApproval.png" alt="Quantity Approval Icon" class="sidenavbar-icon">
+          <span>Quantity Approval</span>
+        </a>
+      </li>
+      <li class="nav__item">
+        <a href="PriceApproval.html">
+          <img src="../Images/Sidenavbar/PriceApproval.png" alt="Price Approval Icon" class="sidenavbar-icon">
+          <span>Price Approval</span>
+        </a>
+      </li>
+      <li class="nav__item">
+        <a href="OutletRegionalSettings.html">
+          <img src="../Images/Sidenavbar/SettingOutletRegional.png" alt="Outlet Regional Settings Icon" class="sidenavbar-icon">
+          <span>Outlet Regional</span>
+        </a>
+      </li>
+      <li class="nav__item">
+        <a href="OutletPage.html">
+          <img src="../Images/Sidenavbar/Outlet.png" alt="Outlet Page Icon" class="sidenavbar-icon">
+          <span>Outlet Page</span>
+        </a>
+      </li>
+      <li class="nav__item">
+        <a href="OutletApproval.html">
+          <img src="../Images/Sidenavbar/OutletApproval.png" alt="Authorization Page Icon" class="sidenavbar-icon">
+          <span>Outlet Approval</span>
+        </a>
+      </li>
+      <li class="nav__item">
+        <a href="AuthorizationPage.html">
+          <img src="../Images/Sidenavbar/Authorization.png" alt="Outlet Approval Icon" class="sidenavbar-icon">
+          <span>Authorization</span>
+        </a>
+      </li>
 
+      <!-- Group: Stock Adjustment Approval -->
+      <li class="nav-heading">Stock Adjustment Approval</li>
+      <li class="nav__item">
+        <a href="../Stock Adjustment Approval/ListingPage.html">
+          <img src="../Images/Sidenavbar/Listing.png" alt="Listing Icon" class="sidenavbar-icon">
+          <span>Listing</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="container main-container">
       <div class="col-md-9">
         <h1 class="mb-4 text-center page-title">Outlet Regional Settings</h1>
 
         <!-- Search and Add New Button Section -->
         <div class="d-flex justify-content-between mb-3">
-          <input type="text" id="searchInput" class="form-control w-75" placeholder="Search Region" oninput="applySearch()">
-          <button class="btn btn-primary" onclick="addNewRegion()">Add New</button>
-        </div>
+          <input type="text" id="searchInput" class="form-control w-25" placeholder="Search Region" oninput="applySearch()">
+          <a href="#" class="text-dark add-new-link" style="font-size: 16px; font-weight: bold; margin-top:11px;" data-bs-toggle="modal" data-bs-target="#addLevelModal">Add New</a>
+    </div>
 
         <!-- Table for Region Details -->
         <table class="table">
@@ -89,10 +150,116 @@
         </table>
 
       </div>
+       <div class="d-flex justify-content-between align-items-center mb-4">
+            <!-- Items Per Page Dropdown -->
+            <div class="d-flex align-items-center">
+              <label for="itemsPerPage" class="form-label me-2">Items per page</label>
+              <select id="itemsPerPage" class="form-select" style="width: 70px;" onchange="updatePagination()">
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+              <div id="paginationInfo" class="me-3">1–25 of 500 items</div>
+              <div class="d-flex align-items-center">
+                <div id="paginationContainer" class="pagination">
+                  <ul class="pagination">
+                    <li><a href="#">«</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">»</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+        
+          </div>
+    </div>
+   
+  </div>
+
+<!-- Modal for Add New Level -->
+<div class="modal fade" id="addLevelModal" tabindex="-1" aria-labelledby="addLevelModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addLevelModalLabel">Add New Region</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancel"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Content inside the modal -->
+        <div class="colunn-entry" style="flex: 1;">
+          <div class="col">
+            <label for="name" class="form-label"></label>
+            <input type="text" class="form-control" id="region" placeholder="Enter Region">
+          </div>
+    
+
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-between">
+        <!-- Save button inside the modal -->
+        <button type="button" class="btn btn-primary">Save</button>
+        <!-- Close button inside the modal -->
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+      </div>
     </div>
   </div>
 
-  <script>
+<!-- Add New Button (the one that will trigger the error modal) -->
+
+<!-- Error Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <i class="fas fa-times-circle text-danger"></i> <!-- Error icon -->
+      <h5 class="modal-title" id="errorModalLabel">Error</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <p>Couldn't connect to Sync servers. Please check your internet connection and try again.</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">OK</button>
+    </div>
+  </div>
+</div>
+</div>
+  
+</div>
+
+
+<script>
+
+// Show Error Modal when "Add New" is clicked
+const addNewButton = document.querySelector('.add-new-link');
+addNewButton.addEventListener('click', function () {
+  // Trigger the error modal to open
+  const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+  errorModal.show();
+});
+
+
+
+
+  const sidebar = document.getElementById("sidebar");
+    const toggleButton = document.getElementById("toggleSidebar");
+    const mainContainer = document.querySelector(".main-container");
+
+    toggleButton.addEventListener("click", function() {
+        sidebar.classList.toggle("expanded");
+        sidebar.classList.toggle("collapsed");
+
+        // Ensure the main container moves accordingly
+        if (sidebar.classList.contains("expanded")) {
+            mainContainer.style.marginLeft = "300px";
+            toggleButton.style.left = "210px";
+        } else {
+            mainContainer.style.marginLeft = "230px";
+            toggleButton.style.left = "70px";
+        }
+    });
     let currentPage = 1;
     const rowsPerPage = 3;
     const regions = [
@@ -130,23 +297,23 @@
       renderRegionTable(filteredRegions);
     }
 
-    function addNewRegion() {
-      const regionName = prompt("Enter new region name:");
-      if (regionName) {
-        const newRegion = {
-          id: regions.length + 1,
-          regionName,
-          approvalByQtyId: "--",
-          approvalByPriceId: "--",
-          createdBy: "System",
-          createdAt: new Date().toLocaleString(),
-          modifiedBy: "--",
-          modifiedAt: "--"
-        };
-        regions.push(newRegion);
-        renderRegionTable(regions);
-      }
-    }
+    // function addNewRegion() {
+    //   const regionName = prompt("Enter new region region:");
+    //   if (regionName) {
+    //     const newRegion = {
+    //       id: regions.length + 1,
+    //       regionName,
+    //       approvalByQtyId: "--",
+    //       approvalByPriceId: "--",
+    //       createdBy: "System",
+    //       createdAt: new Date().toLocaleString(),
+    //       modifiedBy: "--",
+    //       modifiedAt: "--"
+    //     };
+    //     regions.push(newRegion);
+    //     renderRegionTable(regions);
+    //   }
+    // }
 
     function changePage(direction) {
       currentPage += direction;
@@ -161,15 +328,7 @@
 
     renderRegionTable(paginate(regions));
   </script>
-  <!-- Pagination UI -->
-  <ul class="pagination">
-    <li><a href="#">&laquo;</a></li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">&raquo;</a></li>
-    </ul>
+ 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script></body>
 </html>

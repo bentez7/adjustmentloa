@@ -1,0 +1,322 @@
+/* ---------------------------- */
+/* General Reset and Box Sizing */
+/* ---------------------------- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, p, span, h1, h6  {
+    font-family: Roboto,Roboto,Roboto,Roboto,Roboto;
+    background: var(--clr-gray100);
+  }
+  
+  /* ---------------------------- */
+  /* Color Variables */
+  /* ---------------------------- */
+  :root {
+    --clr-gray100: #f3f3f3f5;
+    --clr-gray200: #e9ecef;
+    --clr-primary: #6aeeb5;
+    --clr-primary-dark: #039d69;
+    --radius: 0.2rem;
+  }
+  
+  /* ---------------------------- */
+  /* Layout Styles (Navbar, Sidebar, Main Content) */
+  /* ---------------------------- */
+  
+  /* Navbar */
+  .navbar {
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .navbar-logo {
+    width: 45px;
+    margin-right: 
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    background: white;
+    box-shadow: 0px 0px 10px var(--clr-gray200);
+    width: 65px;
+    height: calc(100vh - 60px);
+    position: fixed;
+    top: 60px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+    transition: width 0.3s ease-in-out;
+    z-index: 900;
+    overflow: hidden;
+  }
+  
+  .sidebar.expanded {
+    width: 210px;
+  }
+  
+  /* Sidebar Items */
+  .nav__list {
+    width: 100%;
+    padding: 0;
+  }
+  
+  .nav__item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+  }
+  
+  .nav__item a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .nav__item:hover {
+    background: var(--clr-gray200);
+  }
+  
+  .sidenavbar-icon {
+    width: 25px;
+    height: auto;
+    margin-left: 1px;
+    transition: transform 0.2s ease-in;
+  }
+  
+  /* Hide text in collapsed state */
+  .sidebar.collapsed .nav__item span {
+    display: none;
+  }
+  
+  /* Show text in expanded state */
+  .sidebar.expanded .nav__item span {
+    display: inline;
+  }
+  
+  /* Sidebar Toggle Button */
+  .toggle-btn {
+    position: fixed;
+    top: 70px;
+    left: 90px;
+    font-size: 24px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #000;
+    z-index: 950;
+    transition: left 0.3s ease-in-out;
+  }
+  
+  .sidebar.expanded ~ .toggle-btn {
+    left: 260px;
+  }
+  
+  /* Main Content */
+  .main-container {
+    margin-top: 90px;
+    margin-left: 150px;
+    transition: margin 0.2s ease-in-out, width 0.2s ease-in-out;
+    padding: 20px;
+  }
+  
+  /* ---------------------------- */
+  /* Table Styling */
+  /* ---------------------------- */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table thead {
+    background-color: #129d5a;
+    color: white;
+  }
+  
+  .table thead th {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .table tbody tr:nth-child(odd) {
+    background-color: #b0ccdd;
+  }
+  
+  .table tbody tr:nth-child(even) {
+    background-color: #e3f2f7;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #fff59e;
+  }
+  
+  .table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* ---------------------------- */
+  /* Pagination Styling */
+  /* ---------------------------- */
+  .pagination {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .pagination li {
+    display: inline-block;
+  }
+  
+  .pagination a {
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #000;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .pagination a:hover {
+    background-color: #f1f1f1;
+    color: #000;
+  }
+  
+  .pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+  }
+  
+  /* ---------------------------- */
+  /* Modal Styling */
+  /* ---------------------------- */
+  .modal-content {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .modal-body {
+    padding: 15px;
+    font-size: 14px;
+  }
+  
+  .modal-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  
+  .modal {
+    margin-top: 210px;
+    margin-left: 60px;
+  }
+  
+  .form-select {
+    padding: 1px;
+  }
+  
+  /* ---------------------------- */
+  /* Media Queries (Responsive) */
+  /* ---------------------------- */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 60px;
+    }
+  
+    .sidebar.expanded {
+      width: 180px;
+    }
+  
+    .main-container {
+      margin-left: 70px;
+    }
+  
+    .nav__item span {
+      display: none;
+    }
+  }
+
+
+
+  .sidebar {
+    width: 60px;
+    transition: width 0.3s ease-in-out;
+    overflow: hidden;
+  }
+  
+  .sidebar.expanded {
+    width: 200px;
+  }
+  
+  .nav-heading {
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    color: #ffffff;
+    background: #343a40;
+    transition: padding-left 0.3s ease-in-out;
+  }
+  
+  /* Hide the heading when sidebar is collapsed */
+  .sidebar.collapsed .nav-heading {
+    display: none;
+  }
+  
+  /* Indent the heading slightly when expanded */
+  .sidebar.expanded .nav-heading {
+    padding-left: 20px;
+  }
+  
+  /* Style for icons and text */
+  .nav__item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav__item a {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+  }
+  
+  .nav__item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+  
+  /* Hide text when sidebar is collapsed */
+  .sidebar.collapsed .nav__item span {
+    display: none;
+  }

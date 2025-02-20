@@ -7,257 +7,50 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link rel="icon" href="../Images/Eco-Shop logo.png" type="image/png">
-  
-  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles2.css">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"> -->
 </head>
 
 <style>
-
-body, p, span, h1, h6 {
-    font-family: 'Roboto', 'Roboto', 'Roboto', 'Roboto';
-  }
-
-  .d-flex {
-    font-size: 12px; /* Smaller font size */
-  }
-
-  form .form-label {
-    font-size: 13px; /* Smaller label */
-  }
-
-  select, .btn {
-    font-size: 12px; /* Adjust button and select box font */
-    padding: 2px 10px; /* Make the select box and button smaller */
-  }
-
-
-  .pagination-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 30px;
-  }
-
-  .pagination {
-    display: flex;
-    gap: 10px;
-    font-size: 14px;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .pagination li {
-    display: inline-block;
-  }
-
-  .pagination a {
-    padding: 5px 10px;
-    text-decoration: none;
-    color: #000000;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-
-  .pagination a:hover {
-    background-color: #00000000;
-    color: white;
-  }
-
-
-    /* Styling for the table */
-    .table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    .table tbody tr:nth-child(odd) {
-      background-color: #b0ccdd; /* Light color for odd rows */
-    }
-    
-    .table tbody tr:nth-child(even) {
-      background-color: #e3f2f7; /* Dark color for even rows */
-    }
-
-
-    /* Adding hover effect on table rows */
-    .table tr:hover td {
-      background-color: #fff59e; /* Slight color change when hovering over rows */
-    }
-
-    .table {
-      border: 1px solid #5757574b; /* Adds a border around the table */
-    }
-  
-
-
-  :root {
-    /* Color variables */
-
-    --clr-gray100: #f3f3f3f5;
-   
-    --radius: 0.2rem;
-  }
-
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    font-family: Montserrat, sans-serif;
-    background: var(--clr-gray100);
-  }
-
-  /* Navbar */
-  .navbar {
-    background-color: #f8f9fa;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-  }
-
-  .navbar-logo {
-    width: 45px;
-  }
-
-  /* Sidebar */
-  .sidebar {
-    background: white;
-    box-shadow: 0px 0px 10px var(--clr-gray200);
-    width: 65px; /* Default width for collapsed */
-    height: calc(100vh - 60px); /* Ensure it doesn't overlap the navbar */
-    position: fixed;
-    top: 60px; /* Push below navbar */
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 1rem;
-    transition: width 0.3s ease-in-out;
-    z-index: 900;
-    overflow: hidden;
-  }
-
-  /* Expanded Sidebar */
-  .sidebar.expanded {
-    width: 210px;
-  }
-
-  /* Sidebar Items */
-  .nav__list {
-    width: 100%;
-    padding: 0;
-  }
-
-  .nav__item {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 10px;
-    cursor: pointer;
-    transition: background 0.2s ease-in-out;
-  }
-
-  .nav__item a {
-    color: black; /* Set custom color */
-    text-decoration: none;
-}
-
-  .nav__item:hover {
-    background: var(--clr-gray200);
-  }
-
-  .sidenavbar-icon {
-    width: 40px;
-    height: auto;
-    margin-right: 10px;
-    transition: transform 0.2s ease-in;
-  }
-
-  /* Hide Text in Collapsed State */
-  .sidebar.collapsed .nav__item span {
-    display: none;
-  }
-
-  /* Show Text in Expanded State */
-  .sidebar.expanded .nav__item span {
-    display: inline;
-  }
-
-  /* Toggle Button */
-  .toggle-btn {
-    position: fixed;
-    top: 70px;
-    left: 90px;
-    font-size: 24px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    color: #000;
-    z-index: 950;
-    transition: left 0.3s ease-in-out;
-  }
-
-  /* Move Button When Sidebar Expands */
-  .sidebar.expanded ~ .toggle-btn {
-    left: 260px;
-  }
-
-  .main-container {
-    margin-top: 90px; /* Adjust to prevent navbar overlap */
-    margin-left: 150px; /* Default margin when sidebar is collapsed */
+ 
+.main-container {
+    margin-top: 120px; /* Adjust to prevent navbar overlap */
+    margin-left: 140px; /* Default margin when sidebar is collapsed */
     transition: margin 0.2s ease-in-out, width 0.2s ease-in-out;
-    padding: 20px;
-  }
-  .form-select{
-    padding :1px
-  }
+    padding:1px;
+    max-width: 1290px;
 
-  .modal{
-    margin-top:210px;
-    margin-left: 60px;
   }
-
-
 
   
-
-
-
 </style>
-
 <body>
 
+  <!-- Navigation Bar -->
   <nav class="navbar">
-    <!-- Logo on the left -->
     <a href="../MainPage.html">
       <img src="../Images/Eco-Shop logo.png" alt="Eco-Shop Logo" class="navbar-logo">
     </a>
-
-    <!-- User icon on the right with dropdown -->
-    <div class="dropdown">
-      <i class="fas fa-user-circle" style="font-size: 24px; cursor: pointer;"></i>
-      <div class="dropdown-menu">
-        <a href="../LoginPage.html">Logout</a>
-      </div>
+    <div class="dropdown user-dropdown">
+      <button class="btn dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-user-circle user-icon"></i>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="userDropdown">
+        <li><a class="dropdown-item" href="../LoginPage.html">Log Out</a></li>
+      </ul>
     </div>
   </nav>
 
-   <!-- Sidebar -->
-   <div class="sidebar collapsed" id="sidebar">
+  <!-- Sidebar -->
+  <button id="toggleSidebar" class="toggle-btn">
+    <i id="toggleIcon" class="fas fa-arrow-right"></i>
+  </button>
+
+  <div class="sidebar collapsed" id="sidebar">
     <ul class="nav__list">
+      
+      <!-- Group: Maintenance -->
+      <li class="nav-heading">Maintenance</li>
       <li class="nav__item">
         <a href="QuantityApproval.html">
           <img src="../Images/Sidenavbar/QuantityApproval.png" alt="Quantity Approval Icon" class="sidenavbar-icon">
@@ -284,18 +77,28 @@ body, p, span, h1, h6 {
       </li>
       <li class="nav__item">
         <a href="OutletApproval.html">
-          <img src="../Images/Sidenavbar/Authorization.png" alt="Authorization Page Icon" class="sidenavbar-icon">
+          <img src="../Images/Sidenavbar/OutletApproval.png" alt="Authorization Page Icon" class="sidenavbar-icon">
+          <span>Outlet Approval</span>
+        </a>
+      </li>
+      <li class="nav__item">
+        <a href="AuthorizationPage.html">
+          <img src="../Images/Sidenavbar/Authorization.png" alt="Outlet Approval Icon" class="sidenavbar-icon">
           <span>Authorization</span>
+        </a>
+      </li>
+
+      <!-- Group: Stock Adjustment Approval -->
+      <li class="nav-heading">Stock Adjustment Approval</li>
+      <li class="nav__item">
+        <a href="../Stock Adjustment Approval/ListingPage.html">
+          <img src="../Images/Sidenavbar/Listing.png" alt="Listing Icon" class="sidenavbar-icon">
+          <span>Listing</span>
         </a>
       </li>
     </ul>
   </div>
-  <button id="toggleSidebar" class="toggle-btn">
-    <i id="toggleIcon" class="fas fa-arrow-right"></i>
-  </button>
-
-
-
+ 
         <!-- Content Panel -->
         <div class="container main-container">
           <h1 class="mb-4 text-center">Approval by Quantity</h1>
@@ -513,17 +316,18 @@ body, p, span, h1, h6 {
   const toggleButton = document.getElementById("toggleSidebar");
   const mainContainer = document.querySelector(".main-container");
 
+  // Function to toggle sidebar
   toggleButton.addEventListener("click", function() {
       sidebar.classList.toggle("expanded");
       sidebar.classList.toggle("collapsed");
 
-      // Ensure the main container moves accordingly
+      // Adjust main container margin and toggle button position dynamically
       if (sidebar.classList.contains("expanded")) {
-          mainContainer.style.marginLeft = "200px";
-          toggleButton.style.left = "210px";
+          mainContainer.style.marginLeft = "210px";  // Adjusted for better alignment
+          toggleButton.style.left = "240px";  // Keeps button close to sidebar
       } else {
-          mainContainer.style.marginLeft = "150px";
-          toggleButton.style.left = "70px";
+          mainContainer.style.marginLeft = "140px";  // More space when collapsed
+          toggleButton.style.left = "60px";  // Keeps button inside sidebar area
       }
   });
 

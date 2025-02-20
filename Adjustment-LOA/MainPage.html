@@ -4,41 +4,184 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Main Page</title>
+
+  <!-- Bootstrap & Font Awesome -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../Adjustment-LOA/Admin/styles2.css">
   <link rel="icon" href="Images/Eco-Shop logo.png" type="image/png">
+
+  <style>
+    /* Sidebar Styling */
+    .sidebar {
+      width: 60px;
+      position: fixed;
+      height: 100vh;
+      background: #ffffff;
+      color: white;
+      overflow: hidden;
+      transition: width 0.3s ease-in-out;
+      padding-top: 20px;
+    }
+
+    .sidebar.expanded {
+      width: 200px;
+    }
+
+    /* Main Content Styling */
+    .main-container {
+      margin-left: 80px; /* Default margin when sidebar is collapsed */
+      transition: margin-left 0.3s ease-in-out;
+      padding: 20px;
+    }
+
+
+    /* Toggle Button */
+    .toggle-btn {
+      position: fixed;
+      top:79px;
+      left: 90px;
+      background: #ffffff;
+      color: rgb(0, 0, 0);
+      border: none;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 5px;
+      z-index: 1000;
+      transition: left 0.3s ease-in-out;
+    }
+
+    .sidebar.expanded ~ .toggle-btn {
+      left: 185px;
+    }
+
+    .sidebar.expanded ~ .navbar {
+      margin-left: 200px;
+    }
+  </style>
 </head>
+
 <body>
+
   <!-- Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid d-flex justify-content-between">
       <!-- Logo -->
       <a class="navbar-brand" href="#">
-        <img src="Images/Eco-Shop logo.png" alt="Eco-Shop API" width="30" height="30" class="d-inline-block align-text-top">
-        Eco-Shop
+        <img src="Images/Eco-Shop logo.png" alt="Eco-Shop Logo" class="navbar-logo">
       </a>
-      
+
       <!-- Centered Links -->
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="Admin/MaintenancePage.html">Maintenance</a>
+            <a class="nav-link" href="Admin/QuantityApproval.html">Maintenance</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="StockAdjustApproval.html">Stock Adjustment Approval</a>
+            <a class="nav-link" href="Stock Adjustment Approval/ListingPage.html">Stock Adjustment Approval</a>
           </li>
         </ul>
       </div>
-      
+
       <!-- User Icon -->
-      <div class="d-flex align-items-center">
-        <a href="Logout.html" class="text-decoration-none">
-          <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User Icon" width="30" height="30">
-          Logout
-        </a>
-      </div>
+      <div class="dropdown user-dropdown">
+        <button class="btn dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fas fa-user-circle user-icon"></i>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="userDropdown">
+          <li><a class="dropdown-item" href="../LoginPage.html">Log Out</a></li>
+        </ul>
     </div>
   </nav>
+
+  
+
+  <!-- Sidebar -->
+  <div class="sidebar collapsed" id="sidebar">
+    <ul class="nav__list">
+      
+      <!-- Group: Maintenance -->
+      <li class="nav-heading">Maintenance</li>
+      <li class="nav__item">
+        <a href="../Adjustment-LOA/Admin/QuantityApproval.html">
+          <img src="../Adjustment-LOA/Images/Sidenavbar/QuantityApproval.png" alt="Quantity Approval Icon">
+          <span>Quantity Approval</span>
+        </a>
+      </li>
+      <li class="nav__item">
+        <a href="../Adjustment-LOA/Admin/PriceApproval.html">
+          <img src="../Adjustment-LOA/Images/Sidenavbar/PriceApproval.png" alt="Price Approval Icon">
+          <span>Price Approval</span>
+        </a>
+      </li>
+      <li class="nav__item">
+        <a href="../Adjustment-LOA/Admin/OutletRegionalSettings.html">
+          <img src="../Adjustment-LOA/Images/Sidenavbar/SettingOutletRegional.png" alt="Outlet Regional Settings Icon">
+          <span>Outlet Regional Settings</span>
+        </a>
+      </li>
+      <li class="nav__item">
+        <a href="../Adjustment-LOA/Admin/OutletPage.html">
+          <img src="../Adjustment-LOA/Images/Sidenavbar/Outlet.png" alt="Outlet Page Icon">
+          <span>Outlet Page</span>
+        </a>
+      </li>
+      <li class="nav__item">
+        <a href="../Adjustment-LOA/Admin/OutletApproval.html">
+          <img src="../Adjustment-LOA/Images/Sidenavbar/OutletApproval.png" alt="Authorization Page Icon">
+          <span>Outlet Approval</span>
+        </a>
+      </li>
+      <li class="nav__item">
+        <a href="../Adjustment-LOA/Admin/AuthorizationPage.html">
+          <img src="../Adjustment-LOA/Images/Sidenavbar/Authorization.png" alt="Authorization Page Icon">
+          <span>Authorization</span>
+        </a>
+      </li>
+
+      <!-- Group: Stock Adjustment Approval -->
+      <li class="nav-heading">Stock Adjustment Approval</li>
+      <li class="nav__item">
+        <a href="../Adjustment-LOA/Stock Adjustment Approval/ListingPage.html">
+          <img src="../Adjustment-LOA/Images/Sidenavbar/Listing.png" alt="Listing Icon">
+          <span>Listing</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Toggle Sidebar Button -->
+  <button id="toggleSidebar" class="toggle-btn">
+    <i id="toggleIcon" class="fas fa-arrow-right"></i>
+  </button>
+
+  <!-- Main Content -->
+  <div class="main-container">
+
+  <script>
+    const sidebar = document.getElementById("sidebar");
+    const toggleButton = document.getElementById("toggleSidebar");
+    const mainContainer = document.querySelector(".main-container");
+
+    toggleButton.addEventListener("click", function() {
+      sidebar.classList.toggle("expanded");
+      sidebar.classList.toggle("collapsed");
+
+      if (sidebar.classList.contains("expanded")) {
+        mainContainer.style.marginLeft = "200px";
+        toggleButton.style.left = "185px";
+        toggleButton.innerHTML = '<i class="fas fa-arrow-left"></i>';
+      } else {
+        mainContainer.style.marginLeft = "80px";
+        toggleButton.style.left = "65px";
+        toggleButton.innerHTML = '<i class="fas fa-arrow-right"></i>';
+      }
+    });
+  </script>
+
+  <!-- Bootstrap Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
