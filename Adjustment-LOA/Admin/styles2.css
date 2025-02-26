@@ -16,7 +16,7 @@
   /* Color Variables */
   /* ---------------------------- */
   :root {
-    --clr-gray100: #f3f3f3f5;
+    /* --clr-gray100: #f3f3f3f5; */
     --clr-gray200: #e9ecef;
     --clr-primary: #6aeeb5;
     --clr-primary-dark: #039d69;
@@ -321,4 +321,28 @@
   /* Hide text when sidebar is collapsed */
   .sidebar.collapsed .nav__item span {
     display: none;
+  }
+
+
+  /* Dropdown Icon and Profile in the menu */
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .dropdown-item span {
+    margin-left: 10px; /* Space between the icon and text */
+  }
+
+  /* Divider style */
+  .dropdown-divider {
+    border-top: 1px solid #ddd;
+    margin: 5px 0;
+  }
+
+  /* For the logout button */
+  .dropdown-item.text-danger {
+    color: #e74c3c;
   }

@@ -36,14 +36,23 @@
     <a href="../MainPage.html">
       <img src="../Images/Eco-Shop logo.png" alt="Eco-Shop Logo" class="navbar-logo">
     </a>
-    <div class="dropdown user-dropdown">
+    <div class="user-dropdown ms-auto">
       <button class="btn dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fas fa-user-circle user-icon"></i>
+          <i class="fas fa-user-circle user-icon"></i><!-- Profile Icon -->
       </button>
-      <ul class="dropdown-menu" aria-labelledby="userDropdown">
-        <li><a class="dropdown-item" href="../LoginPage.html">Log Out</a></li>
+      <!-- Dropdown Menu -->
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+        <li class="dropdown-item">
+            <i class="fas fa-user-circle user-icon"></i>
+            <span>user178@ecoshop.com</span>
+        </li>
+        <li class="dropdown-item">User Role: Admin</li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item " href="../LoginPage.html">
+            <i class="fas fa-sign-out-alt"></i> <Span> Logout </Span>
+        </a></li>
       </ul>
-    </div>
+  </div>
   </nav>
 
   <!-- Sidebar -->
@@ -162,16 +171,16 @@
   <script>
     // Sample data
     const sampleData = [
-      { outlet: "JVS - TAMAN UNIVERSITI", quantityApproval: "Pending", priceApproval: "Approved", createdBy: "Admin", createdAt: "2024-01-15", modifiedBy: "--", modifiedAt: "--" },
-      { outlet: "PKS - KEPALA BATAS", quantityApproval: "Approved", priceApproval: "Pending", createdBy: "User A", createdAt: "2024-01-20", modifiedBy: "User B", modifiedAt: "2024-02-01" },
-      { outlet: "BGK - GM KLANG", quantityApproval: "Rejected", priceApproval: "Approved", createdBy: "User C", createdAt: "2024-02-02", modifiedBy: "User D", modifiedAt: "2024-02-10" },
-      { outlet: "BSJ - SUBANG JAYA", quantityApproval: "Pending", priceApproval: "Pending", createdBy: "Admin", createdAt: "2024-01-30", modifiedBy: "--", modifiedAt: "--" },
-      { outlet: "ASS - SUNGAI SIPUT", quantityApproval: "Approved", priceApproval: "Rejected", createdBy: "User E", createdAt: "2024-01-10", modifiedBy: "User F", modifiedAt: "2024-02-05" },
-      { outlet: "BMK - METRO KAJANG", quantityApproval: "Rejected", priceApproval: "Approved", createdBy: "User G", createdAt: "2024-02-05", modifiedBy: "User H", modifiedAt: "2024-02-15" },
-      { outlet: "SJMG - MERSING", quantityApproval: "Pending", priceApproval: "Approved", createdBy: "Admin", createdAt: "2024-01-25", modifiedBy: "--", modifiedAt: "--" },
-      { outlet: "BJY - PUTRAJAYA", quantityApproval: "Approved", priceApproval: "Approved", createdBy: "User I", createdAt: "2024-01-18", modifiedBy: "User J", modifiedAt: "2024-02-08" },
-      { outlet: "JSG - U SENTRAL SEGAMAT", quantityApproval: "Rejected", priceApproval: "Pending", createdBy: "User K", createdAt: "2024-02-03", modifiedBy: "User L", modifiedAt: "2024-02-14" },
-      { outlet: "BWS - AEON SETIAWANGSA", quantityApproval: "Pending", priceApproval: "Pending", createdBy: "Admin", createdAt: "2024-01-28", modifiedBy: "--", modifiedAt: "--" }
+      { outlet: "JVS - TAMAN UNIVERSITI", quantityApproval: "Pending", priceApproval: "Approved", createdBy: "Admin", createdAt: "22/02/2025 10:54 AM", modifiedBy: "--", modifiedAt: "22/01/2025 1:42 PM" },
+      { outlet: "PKS - KEPALA BATAS", quantityApproval: "Approved", priceApproval: "Pending", createdBy: "User A", createdAt: "02/03/2025 6:42 PM", modifiedBy: "User B", modifiedAt: "02/03/2025 6:42 PM" },
+      { outlet: "BGK - GM KLANG", quantityApproval: "Rejected", priceApproval: "Approved", createdBy: "User C", createdAt: "22/01/2025 1:42 PM", modifiedBy: "User D", modifiedAt: "04/02/2025 5:55 PM" },
+      { outlet: "BSJ - SUBANG JAYA", quantityApproval: "Pending", priceApproval: "Pending", createdBy: "Admin", createdAt: "05/01/2025 6:50 PM", modifiedBy: "--", modifiedAt: "10/01/2025 5:12 PM" },
+      { outlet: "ASS - SUNGAI SIPUT", quantityApproval: "Approved", priceApproval: "Rejected", createdBy: "User E", createdAt: "16/12/2024 3:12 PM", modifiedBy: "User F", modifiedAt: "15/01/2025 9:15 AM" },
+      { outlet: "BMK - METRO KAJANG", quantityApproval: "Rejected", priceApproval: "Approved", createdBy: "User G", createdAt: "10/01/2025 5:12 PM", modifiedBy: "User H", modifiedAt: "16/12/2024 3:12 PM" },
+      { outlet: "SJMG - MERSING", quantityApproval: "Pending", priceApproval: "Approved", createdBy: "Admin", createdAt: "28/02/2025 7:12 PM", modifiedBy: "--", modifiedAt: "--" },
+      { outlet: "BJY - PUTRAJAYA", quantityApproval: "Approved", priceApproval: "Approved", createdBy: "User I", createdAt: "07/02/2025 10:12 AM", modifiedBy: "User J", modifiedAt: "22/01/2025 1:42 PM" },
+      { outlet: "JSG - U SENTRAL SEGAMAT", quantityApproval: "Rejected", priceApproval: "Pending", createdBy: "User K", createdAt: "15/01/2025 9:15 AM", modifiedBy: "User L", modifiedAt: "10/01/2025 5:12 PM" },
+      { outlet: "BWS - AEON SETIAWANGSA", quantityApproval: "Pending", priceApproval: "Pending", createdBy: "Admin", createdAt: "04/02/2025 5:55 PM", modifiedBy: "--", modifiedAt: "--" }
     ];
 
     // Render table data

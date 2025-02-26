@@ -18,14 +18,23 @@
       <a href="../MainPage.html">
         <img src="../Images/Eco-Shop logo.png" alt="Eco-Shop Logo" class="navbar-logo">
       </a>
-      <div class="dropdown user-dropdown">
+      <div class="user-dropdown ms-auto">
         <button class="btn dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fas fa-user-circle user-icon"></i>
+            <i class="fas fa-user-circle user-icon"></i><!-- Profile Icon -->
         </button>
-        <ul class="dropdown-menu" aria-labelledby="userDropdown">
-          <li><a class="dropdown-item" href="../LoginPage.html">Log Out</a></li>
+        <!-- Dropdown Menu -->
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <li class="dropdown-item">
+              <i class="fas fa-user-circle user-icon"></i>
+              <span>user178@ecoshop.com</span>
+          </li>
+          <li class="dropdown-item">User Role: Admin</li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item " href="../LoginPage.html">
+              <i class="fas fa-sign-out-alt"></i> <Span> Logout </Span>
+          </a></li>
         </ul>
-      </div>
+    </div>
     </nav>
 
   <!-- Sidebar -->
@@ -290,6 +299,24 @@
 
   <script>
 
+  function formatDate(date) {
+      if (!date || isNaN(new Date(date))) return "---"; // Check if date is invalid
+
+      const d = new Date(date);
+      const day = String(d.getDate()).padStart(2, '0');
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const year = d.getFullYear();
+      let hours = d.getHours();
+      const minutes = String(d.getMinutes()).padStart(2, '0');
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      
+      hours = hours % 12; // Convert to 12-hour format
+      hours = hours ? String(hours).padStart(2, '0') : '12'; // Add leading zero if necessary
+      const formattedDate = `${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
+
+      return formattedDate; // Format as dd/mm/yyyy hh:mm AM/PM
+    }
+
   // Show Error Modal when "Add New" is clicked
   const addNewButton = document.querySelector('.add-new-link');
   addNewButton.addEventListener('click', function () {
@@ -362,9 +389,9 @@
             <td>${row.level1Range}</td>
             <td>${row.level2Range}</td>
             <td>${row.level3Range}</td>
-            <td>${row.createdDate}</td>
+            <td>${formatDate(row.createdDate)}</td>
             <td>${row.modifiedBy}</td>
-            <td>${row.modifiedDate}</td>
+            <td>${formatDate(row.modifiedDate)}</td>
             <td>
               ${targetStatus === "Inactive"
                 ? `<i class="fas fa-eye-slash" onclick="toggleVisibility(${row.id}, 'Active')"></i>`
@@ -388,9 +415,9 @@
             <td>${row.level1Range}</td>
             <td>${row.level2Range}</td>
             <td>${row.level3Range}</td>
-            <td>${row.createdDate}</td>
+            <td>${formatDate(row.createdDate)}</td>
             <td>${row.modifiedBy}</td>
-            <td>${row.modifiedDate}</td>
+            <td>${formatDate(row.modifiedDate)}</td>
             <td>${row.status}</td>
             <td>
               ${row.status === "Active"

@@ -12,7 +12,7 @@
   <style>
     .main-container {
       margin-top: 100px; /* Adjust to prevent navbar overlap */
-      margin-left: 180px; /* Default margin when sidebar is collapsed */
+      margin-left: 140px; /* Default margin when sidebar is collapsed */
       width:1900px;
     }
 
@@ -20,17 +20,15 @@
       margin-left: 320px;
     }
 
-    /* Outlet Name Clickable */
     .outlet-link {
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
-      transition: color 0.2s ease-in-out;
+    text-decoration: underline;
+    color: blue;
+    font-weight: normal;
+    transition: color 0.2s ease-in-out;
     }
 
     .outlet-link:hover {
-      color: blue;
-      text-decoration: underline;
+      color: darkblue;
     }
   </style>
 </head>
@@ -42,14 +40,23 @@
       <a href="../MainPage.html">
         <img src="../Images/Eco-Shop logo.png" alt="Eco-Shop Logo" class="navbar-logo">
       </a>
-      <div class="dropdown user-dropdown">
+      <div class="user-dropdown ms-auto">
         <button class="btn dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fas fa-user-circle user-icon"></i>
+            <i class="fas fa-user-circle user-icon"></i><!-- Profile Icon -->
         </button>
-        <ul class="dropdown-menu" aria-labelledby="userDropdown">
-          <li><a class="dropdown-item" href="../LoginPage.html">Log Out</a></li>
+        <!-- Dropdown Menu -->
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <li class="dropdown-item">
+              <i class="fas fa-user-circle user-icon"></i>
+              <span>user178@ecoshop.com</span>
+          </li>
+          <li class="dropdown-item">User Role: Admin</li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item " href="../LoginPage.html">
+              <i class="fas fa-sign-out-alt"></i> <Span> Logout </Span>
+          </a></li>
         </ul>
-      </div>
+    </div>
     </nav>
 
    <!-- Sidebar -->
@@ -119,7 +126,7 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>Name</th>
+          <th>Outlet</th>
           <th>Regional</th>
           <th>Status</th>
           <th>Created By</th>
@@ -181,16 +188,16 @@
 
 
     const outletRows = [
-      { id: 1, name: "BSJ - SUBANG JAYA", regional: "Central", status: "Active", createdBy: "Admin", createdAt: "2023-01-01", modifiedBy: "--", modifiedAt: "--" },
-      { id: 2, name: "JVS - TAMAN UNIVERSITI", regional: "Central", status: "Active", createdBy: "user1", createdAt: "2023-01-03", modifiedBy: "--", modifiedAt: "--" },
-      { id: 3, name: "BGK - GM KLANG", regional: "Central", status: "Inactive", createdBy: "IT", createdAt: "2023-02-05", modifiedBy: "--", modifiedAt: "--" },
-      { id: 4, name: "BJY - PUTRAJAYA", regional: "East Coast", status: "Active", createdBy: "user2", createdAt: "2023-03-07", modifiedBy: "--", modifiedAt: "--" },
-      { id: 5, name: "PKS - KEPALA BATAS", regional: "Northern", status: "Inactive", createdBy: "ZONE", createdAt: "2023-03-20", modifiedBy: "--", modifiedAt: "--" },
-      { id: 6, name: "BWS - AEON SETIAWANGSA", regional: "Southern", status: "Active", createdBy: "Admin", createdAt: "2023-03-20", modifiedBy: "--", modifiedAt: "--" },
-      { id: 7, name: "DKK - KUALA KRAI", regional: "Southern", status: "Inactive", createdBy: "AM", createdAt: "2023-03-20", modifiedBy: "--", modifiedAt: "--" },
-      { id: 8, name: "NSN - SENAWANG", regional: "Southern", status: "Inactive", createdBy: "IT", createdAt: "2023-03-20", modifiedBy: "--", modifiedAt: "--" },
-      { id: 9, name: "JSG - U SENTRAL SEGAMAT", regional: "Southern", status: "Active", createdBy: "ZONE", createdAt: "2023-03-20", modifiedBy: "--", modifiedAt: "--" },
-      { id: 10, name: "BMK - METRO KAJANG", regional: "Central", status: "Active", createdBy: "Admin", createdAt: "2023-03-20", modifiedBy: "--", modifiedAt: "--" }
+      { id: 1, name: "BSJ - SUBANG JAYA", regional: "Central", status: "Active", createdBy: "Admin", createdAt: "22/02/2025 3:12 PM", modifiedBy: "--", modifiedAt: "--" },
+      { id: 2, name: "JVS - TAMAN UNIVERSITI", regional: "Central", status: "Active", createdBy: "user1", createdAt: "02/03/2025 11:42 AM", modifiedBy: "--", modifiedAt: "--" },
+      { id: 3, name: "BGK - GM KLANG", regional: "Central", status: "Inactive", createdBy: "IT", createdAt: "22/01/2025 1:42 PM", modifiedBy: "--", modifiedAt: "--" },
+      { id: 4, name: "BJY - PUTRAJAYA", regional: "East Coast", status: "Active", createdBy: "user2", createdAt: "05/01/2025 6:50 PM", modifiedBy: "--", modifiedAt: "--" },
+      { id: 5, name: "PKS - KEPALA BATAS", regional: "Northern", status: "Inactive", createdBy: "ZONE", createdAt: "16/12/2024 3:12 PM", modifiedBy: "--", modifiedAt: "--" },
+      { id: 6, name: "BWS - AEON SETIAWANGSA", regional: "Southern", status: "Active", createdBy: "Admin", createdAt: "10/01/2025 5:12 PM", modifiedBy: "--", modifiedAt: "--" },
+      { id: 7, name: "DKK - KUALA KRAI", regional: "Southern", status: "Inactive", createdBy: "AM", createdAt: "28/02/2025 7:12 PM", modifiedBy: "--", modifiedAt: "--" },
+      { id: 8, name: "NSN - SENAWANG", regional: "Southern", status: "Inactive", createdBy: "IT", createdAt: "04/02/2025 5:55 PM", modifiedBy: "--", modifiedAt: "--" },
+      { id: 9, name: "JSG - U SENTRAL SEGAMAT", regional: "Southern", status: "Active", createdBy: "ZONE", createdAt: "22/02/2025 10:54 AM", modifiedBy: "--", modifiedAt: "--" },
+      { id: 10, name: "BMK - METRO KAJANG", regional: "Central", status: "Active", createdBy: "Admin", createdAt: "15/01/2025 9:15 AM", modifiedBy: "--", modifiedAt: "--" }
 
     ];
 

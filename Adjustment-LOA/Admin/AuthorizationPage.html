@@ -31,14 +31,23 @@
       <a href="../MainPage.html">
         <img src="../Images/Eco-Shop logo.png" alt="Eco-Shop Logo" class="navbar-logo">
       </a>
-      <div class="dropdown user-dropdown">
+      <div class="user-dropdown ms-auto">
         <button class="btn dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fas fa-user-circle user-icon"></i>
+            <i class="fas fa-user-circle user-icon"></i><!-- Profile Icon -->
         </button>
-        <ul class="dropdown-menu" aria-labelledby="userDropdown">
-          <li><a class="dropdown-item" href="../LoginPage.html">Log Out</a></li>
+        <!-- Dropdown Menu -->
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <li class="dropdown-item">
+              <i class="fas fa-user-circle user-icon"></i>
+              <span>user178@ecoshop.com</span>
+          </li>
+          <li class="dropdown-item">User Role: Admin</li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item " href="../LoginPage.html">
+              <i class="fas fa-sign-out-alt"></i> <Span> Logout </Span>
+          </a></li>
         </ul>
-      </div>
+    </div>
     </nav>
 
   <script>
@@ -267,16 +276,16 @@
 
   // Sample hardcoded roles (uses predefinedRoles correctly)
   const sampleRoles = [
-    { role: "IT", accessRights: predefinedRoles["IT"], createdAt: "2024-01-15", modifiedBy: "--", modifiedAt: "--" },
-    { role: "ZONE", accessRights: predefinedRoles["ZONE"], createdAt: "2024-01-20", modifiedBy: "User B", modifiedAt: "2024-02-01" },
-    { role: "AM", accessRights: predefinedRoles["AM"], createdAt: "2024-02-02", modifiedBy: "User C", modifiedAt: "2024-02-10" },
-    { role: "Staff", accessRights: predefinedRoles["Staff"], createdAt: "2024-01-30", modifiedBy: "--", modifiedAt: "--" },
-    { role: "IT", accessRights: predefinedRoles["IT"], createdAt: "2024-01-10", modifiedBy: "User D", modifiedAt: "2024-02-05" },
-    { role: "ZONE", accessRights: predefinedRoles["ZONE"], createdAt: "2024-02-05", modifiedBy: "User E", modifiedAt: "2024-02-15" },
-    { role: "AM", accessRights: predefinedRoles["AM"], createdAt: "2024-01-25", modifiedBy: "--", modifiedAt: "--" },
-    { role: "Staff", accessRights: predefinedRoles["Staff"], createdAt: "2024-01-18", modifiedBy: "User F", modifiedAt: "2024-02-08" },
-    { role: "IT", accessRights: predefinedRoles["IT"], createdAt: "2024-02-03", modifiedBy: "User G", modifiedAt: "2024-02-14" },
-    { role: "ZONE", accessRights: predefinedRoles["ZONE"], createdAt: "2024-01-28", modifiedBy: "--", modifiedAt: "--" }
+    { role: "IT", accessRights: predefinedRoles["IT"], createdAt: "15/01/2025 9:15 AM", modifiedBy: "--", modifiedAt: "--" },
+    { role: "ZONE", accessRights: predefinedRoles["ZONE"], createdAt: "29/02/2025 9:45 AM", modifiedBy: "User B", modifiedAt: "19/01/2025 4:12 PM"  },
+    { role: "AM", accessRights: predefinedRoles["AM"], createdAt: "07/01/2025 12:42 PM", modifiedBy: "User C", modifiedAt: "24/01/2025 3:22 PM" },
+    { role: "Staff", accessRights: predefinedRoles["Staff"], createdAt: "04/02/2025 5:55 PM", modifiedBy: "--", modifiedAt: "--" },
+    { role: "IT", accessRights: predefinedRoles["IT"], createdAt: "22/01/2025 1:42 PM", modifiedBy: "User D", modifiedAt: "22/01/2025 1:42 PM" },
+    { role: "ZONE", accessRights: predefinedRoles["ZONE"], createdAt: "16/12/2024 3:12 PM", modifiedBy: "User E", modifiedAt: "04/02/2025 5:55 PM" },
+    { role: "AM", accessRights: predefinedRoles["AM"], createdAt: "10/01/2025 5:12 PM", modifiedBy: "--", modifiedAt: "--" },
+    { role: "Staff", accessRights: predefinedRoles["Staff"], createdAt: "24/01/2025 1:12 PM", modifiedBy: "User F", modifiedAt: "16/12/2024 3:12 PM"},
+    { role: "IT", accessRights: predefinedRoles["IT"], createdAt: "02/02/2025 11:42 AM", modifiedBy: "User G", modifiedAt: "15/01/2025 9:15 AM" },
+    { role: "ZONE", accessRights: predefinedRoles["ZONE"], createdAt: "04/02/2025 5:55 PM", modifiedBy: "--", modifiedAt: "10/01/2025 5:12 PM"}
   ];
 
   // Function to populate the table
