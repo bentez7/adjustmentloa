@@ -9,25 +9,30 @@
   <link rel="stylesheet" href="../Admin/styles2.css">
   <style>
 
-    .approval-icon {
-      width: 30px;
-      height: 30px;
-      cursor: pointer;
-      margin: 0 5px;
-      transition: all 0.3s ease;
-    }
+   /* Style for approval/rejection icons */
+  .approval-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+  }
 
-    .approval-icon:hover {
-      opacity: 0.6;
-    }
+  /* Hover effect to show lighter icon */
+  .approval-icon:hover {
+    opacity: 0.6;
+  }
 
-    .approval-icon.selected {
-      opacity: 1;
-    }
+  /* When selected (clicked), make the icon darker */
+  .approval-icon.selected {
+    opacity: 1;
+    filter: brightness(1.2);  /* Makes the selected icon darker */
+  }
 
-    .approval-icon.deselected {
-      opacity: 0.4;
-    }
+  /* When deselected, make the icon lighter */
+  .approval-icon.deselected {
+    opacity: 0.4;
+  }
 
     /* Two-column grid for Summary */
     .summary-container {
@@ -35,7 +40,10 @@
       grid-template-columns: 1fr 1fr; /* Two equal columns */
       gap: 20px;
       margin-bottom: 20px;
+      margin: 0 auto; 
       padding: 20px;
+      max-width: 1200px;
+      justify-items: center;
     }
 
     .summary-column p {
@@ -49,6 +57,14 @@
       border: 1px solid #ccc;
       padding: 5px;
       border-radius: 5px;
+    }
+    
+    #detailTitle {
+    margin-top: 60px;  /* Increase margin to push title further down */
+    }
+
+    .navbar {
+    padding-bottom: 10px; /* Add some padding to prevent overlap */
     }
 
   </style>
@@ -70,9 +86,9 @@
         <p><strong>Outlet Name:</strong> BSJ - SUBANG JAYA</p>
         <p><strong>Document ID:</strong> XYZ123</p>
         <p><strong>Document Date:</strong> 22/01/2025 1:42 PM</p>
+        <p><strong>Status:</strong> Active</p>
       </div>
       <div class="summary-column">
-        <p><strong>Status:</strong> Active</p>
         <p><strong>Total Item:</strong> 5</p>
         <p><strong>Total Price:</strong> $500</p>
         <p><strong>Adjustment Type:</strong> Damage Good</p>
@@ -279,27 +295,41 @@
     });
 
     const approveIcons = document.querySelectorAll('.approval-icon');
+
     approveIcons.forEach(icon => {
       icon.addEventListener('click', function() {
-        approveIcons.forEach(i => i.classList.remove('selected'));
-        approveIcons.forEach(i => i.classList.add('deselected'));
+        // Get the parent row of the clicked icon
+        const row = this.closest('tr');
+        
+        // Find both approve and reject icons in this row
+        const rowIcons = row.querySelectorAll('.approval-icon');
 
+        // Remove 'selected' class and add 'deselected' to both icons
+        rowIcons.forEach(i => i.classList.remove('selected', 'deselected'));
+        
+        // Add 'selected' class to the clicked icon (it will become darker)
         this.classList.add('selected');
-        this.classList.remove('deselected');
+        
+        // Add 'deselected' class to the other icon (it will become lighter)
+        rowIcons.forEach(i => {
+          if (i !== this) {
+            i.classList.add('deselected');
+          }
+        });
       });
 
       icon.addEventListener('mouseover', function() {
         if (!this.classList.contains('selected')) {
-          this.classList.add('deselected');
+          this.classList.add('deselected'); // Make unselected icons lighter on hover
         }
       });
 
-      icon.addEventListener('mouseout', function() {
-        if (!this.classList.contains('selected')) {
-          this.classList.remove('deselected');
-        }
-      });
-    });
+  icon.addEventListener('mouseout', function() {
+    if (!this.classList.contains('selected')) {
+      this.classList.remove('deselected'); // Remove the lighter effect when mouse is out
+    }
+  });
+});
 
     function getQueryParam(param) {
       const urlParams = new URLSearchParams(window.location.search);

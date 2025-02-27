@@ -45,7 +45,6 @@
   
   .navbar-logo {
     width: 45px;
-    margin-right: 
   }
   
   /* Sidebar */
@@ -64,6 +63,7 @@
     transition: width 0.3s ease-in-out;
     z-index: 900;
     overflow: hidden;
+    margin-top: -15px;
   }
   
   .sidebar.expanded {
